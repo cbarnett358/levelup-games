@@ -1,8 +1,19 @@
 import { useEffect, useState, useRef } from "react";
 import Head from "next/head";
 import React from "react";
+import { Hero } from "@/components/Hero";
+import TradeSteps from "@/components/TradeSteps";
+import { NavBar } from "@/components/Navbar";
 
 
+
+//limits product_name name to specified length 
+export function limitProductTitle(productName) {
+  if (productName.length > 35) {
+      return productName.substring(0, 25) + "...";
+  }
+  return productName;
+}
 
 
 export function ProductRating({ rating }) {
@@ -79,38 +90,107 @@ export default function Home() {
 </Head>
 
 <main >
-<section className="container bg-primary mx-auto min-h-screen">
-  
-<h1 className="text-8xl flex text-tertiary justify-center font-mainfont">My Products</h1>
-<div>
+  <NavBar></NavBar>
+<Hero></Hero>
+  <TradeSteps></TradeSteps>
+<section className="container  mx-20 ">
+ 
+<h2 className="text-4xl font-mainfont font-bold  text-secondary pt-10 pb-2">Shop Games</h2>
+<div  className='   grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4  gap-10
+
+'>
+
 {products.map((product) => {
 
   return (
-    
+
     <div key={product.product_id} className='text-primary'>
 
-<div className="flex flex-col w-full lg:flex-row">
-<div className="card w-96 glass">
-  <figure><img src={"https://raw.githubusercontent.com/cbarnett358/levelUP-Images/main/levelup-game-covers/" + product.product_id + ".png"} alt="car!"/></figure>
-  <div className="card-body">
-    <h2 className="card-title">{product.product_name} <div className="badge badge-secondary">${product.product_price}</div></h2>
-    
-    <p className="text-tertiary">
-   
-    <ProductRating rating={product.product_rating} />
-    </p>
-    <p>Trade In Value: ${product.product_tradeval}</p>
-    <div className="card-actions">
-    
-    <div className="badge badge-outline">Fashion</div> 
-      <div className="badge badge-outline">Products</div>
-    </div> <button className="btn btn-primary bg-secondary border-none">Learn now!</button>
-  </div>
-</div>
- 
-</div>
 
-</div>
+
+<div
+    className="block max-w-sm mt-sm rounded-lg bg-light shadow-lg ">
+    <a href="#!">
+    <img className="rounded-t-lg" src={"https://raw.githubusercontent.com/cbarnett358/levelUP-Images/main/levelup-game-covers/" + product.product_id + ".png"} alt="Game Cover Art"/>
+
+      
+    </a>
+    <div className="p-6">
+    <p className="text-xl mb-2 font-mainfont text-dark">
+      ${product.product_price}
+      </p>
+
+      <h5
+        className="mb-2 font-mainfont text-2xl  font-bold leading-tight text-pink-600 
+        
+        ">
+        {limitProductTitle(product.product_name)}
+      </h5>
+      
+  
+<div className="text-base text-tertiary ">
+      <ProductRating rating={product.product_rating} />
+      </div>
+      <p className="mb-2 text-base font-mainfont text-dark text-lg ">
+      Platform: {product.product_platform}
+      </p>
+
+
+   
+
+        <a href={product.product_id} className=" font-mainfont text-lg underline font-thin text-pink-600
+        ">
+        View Product
+        </a>
+      <div className="space-x-3">
+        
+      <button
+        key={product.product_id}
+        onClick={() => addToCart(product)}
+
+        
+
+        type="button"
+        className="font-mainfont mt-4 inline-block rounded bg-secondary text-light px-4 py-2 text-lg font-bold
+        shadow-md  hover:bg-pink-500 hover:text-xl
+        "
+        data-te-ripple-init
+
+
+          
+
+        data-te-ripple-color="light">    
+        Add to Cart
+      </button>
+   
+     <button
+        type="button"
+        className="font-mainfont inline-block rounded bg-tertiary text-dark px-4 py-2 text-lg font-bold
+        hover:bg-yellow-400 shadow-md hover:text-xl
+        "
+        data-te-ripple-init
+        onClick={() => tradeInCart(product)}
+
+        data-te-ripple-color="light">
+        Trade In
+      </button>
+   
+      </div>
+<div>
+  
+      </div>
+      
+    </div>
+  </div>
+
+<p className="mb-2 text-base text-dark">
+
+</p>
+
+            </div>
+
+
+
   );
 })}
 </div>
