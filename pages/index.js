@@ -1,9 +1,10 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import Head from "next/head";
 import React from "react";
 import { Hero } from "@/components/Hero";
-import TradeSteps from "@/components/TradeSteps";
+import TradeSteps from "@/components/Tradesteps";
 import { NavBar } from "@/components/Navbar";
+import { Footer } from "@/components/Footer";
 
 
 
@@ -14,6 +15,49 @@ export function limitProductTitle(productName) {
   }
   return productName;
 }
+
+export function tradeInCart(product) {
+  window.location.reload(true);
+
+  const tradecart = JSON.parse(localStorage.getItem("tradecart")) || [];
+  const productExists = tradecart.find((p) => p.product_id === product.product_id);
+  if (productExists) {
+
+      productExists.quantity++;
+      productExists.tradeval++;
+
+  } else {
+
+      tradecart.push({ ...product, quantity: 1, tradeval: product.product_tradeval });
+  }
+  localStorage.setItem("tradecart", JSON.stringify(tradecart));
+}
+
+
+//adds to cart and refreshes page to update cart
+export function addToCart(product) {
+  console.log('hey',product);
+
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    //REFRESH THE CART
+
+    window.location.reload(true);
+
+    const productExists = cart.find((p) => p.product_id === product.product_id);
+    if (productExists) {
+        productExists.quantity++;
+        productExists.price++;
+        
+    } else {
+        cart.push({ ...product, quantity: 1, price: product.product_price });
+    }
+    localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+
+
+
+
 
 
 export function ProductRating({ rating }) {
@@ -32,21 +76,12 @@ export function ProductRating({ rating }) {
 }
 
 export default function Home() {
-  const productNameRef = useRef();
-  const productNameToUpdateRef = useRef();
-  const productIDRef = useRef();
-  const productIDToUpdateRef = useRef();
-  const productIDToDeleteRef = useRef();
+
 
 
 
   const [products, setProducts] = useState([]);
 
-  const [update, setUpdated] = useState([false]);
-  const [updatedError, setUpdatedError] = useState([false]);
-  const [created, setCreated] = useState([false]);
-  const [deleted, setDeleted] = useState([false]);
-  const [deletedError, setDeletedError] = useState([false]);
 
   async function getProducts() {
     const postData = {
@@ -55,27 +90,35 @@ export default function Home() {
         "Content-Type": "application/json",
       },
     };
-    const res = await fetch 
+    const res = await fetch
+
     (`${process.env.NEXT_PUBLIC_API_URL}../../api/products`, 
     postData);
-  
+
+
+
+
   const response = await res.json();
   console.log(response.products);
   setProducts(response.products);
- 
+  //add pagination to products page
+
+    
+
+
+
+
 }
 
-  async function addProduct() {}
 
 
-
-  async function updateProduct() {}
-
-  async function deleteProduct(id) {}
 
   useEffect(() => {
     getProducts();
   }, []);
+
+
+  
 
 
 
@@ -116,32 +159,33 @@ export default function Home() {
       
     </a>
     <div className="p-6">
-    <p className="text-xl mb-2 font-mainfont text-dark">
-      ${product.product_price}
-      </p>
-
+   
       <h5
         className="mb-2 font-mainfont text-2xl  font-bold leading-tight text-pink-600 
         
         ">
         {limitProductTitle(product.product_name)}
       </h5>
-      
-  
-<div className="text-base text-tertiary ">
+      <div className="text-base text-tertiary ">
       <ProductRating rating={product.product_rating} />
       </div>
+      <p className="text-xl mb-2 font-mainfont text-dark">
+      ${product.product_price}
+      </p>
+
+  
+
       <p className="mb-2 text-base font-mainfont text-dark text-lg ">
       Platform: {product.product_platform}
       </p>
 
 
-   
 
-        <a href={product.product_id} className=" font-mainfont text-lg underline font-thin text-pink-600
-        ">
-        View Product
-        </a>
+    <p className="mb-2 text-base font-mainfont text-dark text-lg ">
+      Trade In Value: ${product.product_tradeval}
+      </p>
+
+        
       <div className="space-x-3">
         
       <button
@@ -194,9 +238,26 @@ export default function Home() {
   );
 })}
 </div>
+<div className="flex  mt-12 gap-1
+
+
+">
+<button className="bg-secondary hover:bg-pink-500 text-light font-bold py-2 px-4 rounded">  
+
+Prev 
+</button>
+
+
+<button className="bg-secondary hover:bg-pink-500 text-light font-bold py-2 px-4 rounded">
+Next
+</button>
+</div>
+
 
 
 </ section>
+
+<Footer></Footer>
 </main>
 
 

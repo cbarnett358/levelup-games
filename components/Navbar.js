@@ -1,6 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 
 function cartItemsTotal (cart) {
   let total = 0;
@@ -9,6 +10,18 @@ function cartItemsTotal (cart) {
   })
   return total;
 }
+
+//dynamically updates cart quantity in navbar when item is added to cart
+function cartTotal (cart) {
+  let total = 0;
+  cart.map((product) => {
+      total += product.quantity;
+  })
+  return total;
+}
+
+
+
 
 
 
@@ -38,13 +51,14 @@ export function NavBar() {
 
     return (
       <div className="navbar bg-primary py-4">
-      <div className="flex-1 ">
-        <a className="btn btn-ghost " 
-        onClick={() => {window.location.href = "/"}}
-        >
+    <div className="flex-1 ml-8">
+    <Link href="/"> 
+      
           
         <Image src="/levelUP_Logo.png " alt="levelUP Games" width={180} height={50} />
-        </a>
+       
+        </Link>
+        
       </div>
       <div className="flex-none gap-2 mr-8">
         
@@ -65,10 +79,10 @@ export function NavBar() {
       ">
       
         <div key={total} className="indicator  ">
-        <button className="icon-32 material-icons text-light "
-        onClick={() => {window.location.href = "/addtocart"}}
-        >shopping_bag</button>
-          <span className="border-none shadow-lg badge badge-sm bg-tertiary text-dark indicator-item ">{cartItemsTotal(cart)}</span>
+        <Link href="/checkout/cart"> <button className="icon-32 material-icons text-light "
+  >shopping_bag</button> </Link>
+
+          <span className="border-none shadow-lg badge badge-sm bg-tertiary text-dark indicator-item ">{cartTotal (cart)}</span>
         </div>
       </label>
      

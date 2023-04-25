@@ -17,7 +17,7 @@ export function Hero() {
     <div>
         
       <h1 className="leading-none text-secondary font-mainfont text-6xl lg:text-7xl font-bold">levelUP Your Collection</h1>
-      <p className="pb-6 text-dark pt-3
+      <p className="pb-6 text-dark pt-3 mr-6
      
       ">LevelUp Retro Video Game Exchange is a unique gaming store that specializes in providing a wide selection of classic and retro video games. Whether you&apos;re a collector, an avid gamer, or just looking for a trip down memory lane, LevelUp we have something for everyone. With a passion for retro gaming and a commitment to customer satisfaction, LevelUp Retro Video Game Exchange is the go-to destination for gamers of all ages and backgrounds. So step back in time and experience the nostalgia of classic video games.</p>
       <div
@@ -25,8 +25,7 @@ export function Hero() {
       space-x-3
       '
       >
-      <button className=" hover:bg-pink-500 btn btn-primary bg-secondary border-none font-mainfont text-lg text-light">Get Started</button>
-      <button className="hover:bg-yellow-400 btn btn-secondary  bg-tertiary border-none text-dark font-mainfont text-lg ">Get Started</button>
+ 
       </div>
     </div>
   </div>
