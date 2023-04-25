@@ -132,7 +132,7 @@ export default function Home() {
 
 </Head>
 
-<main >
+<main className="bg-white">
   <NavBar></NavBar>
 <Hero></Hero>
   <TradeSteps></TradeSteps>
