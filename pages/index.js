@@ -5,7 +5,7 @@ import { Hero } from "@/components/Hero";
 import TradeSteps from "@/components/Tradesteps";
 import { NavBar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import Pagination from "@/components/Pagination";
+
 
 
 
@@ -104,7 +104,7 @@ export function ProductPagination({ products }) {
 
 
 
-    <p className="mb-2 font-mainfont text-dark text-lg ">
+    <p className="mb-2 text-base font-mainfont text-dark text-lg ">
       Trade In Value: ${product.product_tradeval}
       </p>
 
@@ -180,12 +180,7 @@ Next
 </div>
        
 
-          <Pagination
-
-              productsPerPage={productsPerPage}
-              totalProducts={products.length}
-              paginate={paginate}
-          />
+         
       </div>
       
   );
