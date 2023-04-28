@@ -98,13 +98,13 @@ export function ProductPagination({ products }) {
 
   
 
-      <p className="mb-2 text-base font-mainfont text-dark text-lg ">
+      <p className="mb-2 font-mainfont text-dark text-lg ">
       Platform: {product.product_platform}
       </p>
 
 
 
-    <p className="mb-2 text-base font-mainfont text-dark text-lg ">
+    <p className="mb-2 font-mainfont text-dark text-lg ">
       Trade In Value: ${product.product_tradeval}
       </p>
 
