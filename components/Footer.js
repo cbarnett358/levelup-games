@@ -11,7 +11,7 @@ export function Footer () {
     return (
         <footer className="footer p-10 mt-10 bg-primary text-light">
         <div>
-        <Image src="/levelUP_Logo.png " alt="levelUP Games" width={200} height={200} className="" /> 
+        <img src="/levelUP_Logo.png " alt="levelUP Games" width={200} height={200} className="" /> 
           <p className='text-xs font-mainfont'>Copyright © 2023 - All right reserved</p>
         </div> 
         <div>
