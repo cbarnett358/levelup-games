@@ -55,7 +55,7 @@ export function NavBar() {
     <Link href="/"> 
       
           
-        <Image src="/levelUP_Logo.png " alt="levelUP Games" width={180} height={50} />
+        <Image src="@/levelUP_Logo.png " alt="levelUP Games" width={180} height={50} />
        
         </Link>
         
