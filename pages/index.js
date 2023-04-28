@@ -5,6 +5,7 @@ import { Hero } from "@/components/Hero";
 import TradeSteps from "@/components/Tradesteps";
 import { NavBar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import Pagination from "@/components/Pagination";
 
 
 
@@ -54,9 +55,141 @@ export function addToCart(product) {
     localStorage.setItem("cart", JSON.stringify(cart));
 }
 
+//pagination function
+export function ProductPagination({ products }) {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [productsPerPage] = useState(8);
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  return (
+    <div>
+    <div  className='   grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4  gap-10
+
+'>
+        
+              {currentProducts.map((product) => (
+                  <div  key={product.product_id}>
+                    
+<div
+    className="block max-w-sm mt-sm rounded-lg bg-light shadow-lg ">
+    <a href="#!">
+    <img className="rounded-t-lg" src={"https://raw.githubusercontent.com/cbarnett358/levelUP-Images/main/levelup-game-covers/" + product.product_id + ".png"} alt="Game Cover Art"/>
+
+      
+    </a>
+    <div className="p-6">
+   
+      <h5
+        className="mb-2 font-mainfont text-2xl  font-bold leading-tight text-pink-600 
+        
+        ">
+        {limitProductTitle(product.product_name)}
+      </h5>
+      <div className="text-base text-tertiary ">
+      <ProductRating rating={product.product_rating} />
+      </div>
+      <p className="text-xl mb-2 font-mainfont text-dark">
+      ${product.product_price}
+      </p>
+
+  
+
+      <p className="mb-2 text-base font-mainfont text-dark text-lg ">
+      Platform: {product.product_platform}
+      </p>
 
 
 
+    <p className="mb-2 text-base font-mainfont text-dark text-lg ">
+      Trade In Value: ${product.product_tradeval}
+      </p>
+
+        
+      <div className="space-x-3">
+        
+      <button
+        key={product.product_id}
+        onClick={() => addToCart(product)}
+
+        
+
+        type="button"
+        className="font-mainfont mt-4 inline-block rounded bg-secondary text-light px-4 py-2 text-lg font-bold
+        shadow-md  hover:bg-pink-500 hover:text-xl
+        "
+        data-te-ripple-init
+
+
+          
+
+        data-te-ripple-color="light">    
+        Add to Cart
+      </button>
+   
+     <button
+        type="button"
+        className="font-mainfont inline-block rounded bg-tertiary text-dark px-4 py-2 text-lg font-bold
+        hover:bg-yellow-400 shadow-md hover:text-xl
+        "
+        data-te-ripple-init
+        onClick={() => tradeInCart(product)}
+
+        data-te-ripple-color="light">
+        Trade In
+      </button>
+   
+      </div>
+<div>
+  
+      </div>
+      
+    </div>
+  </div>
+                  </div>
+              ))}      
+
+
+</div>
+
+
+<div className="flex  mt-12 gap-1
+
+
+">
+<button
+disabled={currentPage === 1 ? true : false}
+onClick={() => paginate(currentPage - 1)}
+className="bg-secondary hover:bg-pink-500 text-light font-bold py-2 px-4 rounded"
+
+>  
+
+Prev 
+</button>
+
+
+<button 
+disabled={currentPage === Math.ceil(products.length / productsPerPage) ? true : false}
+ onClick={() => paginate(currentPage + 1)} 
+className="bg-secondary hover:bg-pink-500 text-light font-bold py-2 px-4 rounded">
+Next
+</button>
+</div>
+       
+
+          <Pagination
+
+              productsPerPage={productsPerPage}
+              totalProducts={products.length}
+              paginate={paginate}
+          />
+      </div>
+      
+  );
+}
 
 
 
@@ -139,121 +272,17 @@ export default function Home() {
 <section className="container  mx-20 ">
  
 <h2 className="text-4xl font-mainfont font-bold  text-secondary pt-10 pb-2">Shop Games</h2>
-<div  className='   grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4  gap-10
-
-'>
-
-{products.map((product) => {
-
-  return (
-
-    <div key={product.product_id} className='text-primary'>
 
 
 
-<div
-    className="block max-w-sm mt-sm rounded-lg bg-light shadow-lg ">
-    <a href="#!">
-    <img className="rounded-t-lg" src={"https://raw.githubusercontent.com/cbarnett358/levelUP-Images/main/levelup-game-covers/" + product.product_id + ".png"} alt="Game Cover Art"/>
 
-      
-    </a>
-    <div className="p-6">
-   
-      <h5
-        className="mb-2 font-mainfont text-2xl  font-bold leading-tight text-pink-600 
-        
-        ">
-        {limitProductTitle(product.product_name)}
-      </h5>
-      <div className="text-base text-tertiary ">
-      <ProductRating rating={product.product_rating} />
-      </div>
-      <p className="text-xl mb-2 font-mainfont text-dark">
-      ${product.product_price}
-      </p>
 
-  
-
-      <p className="mb-2 text-base font-mainfont text-dark text-lg ">
-      Platform: {product.product_platform}
-      </p>
+<ProductPagination products={products} />
 
 
 
-    <p className="mb-2 text-base font-mainfont text-dark text-lg ">
-      Trade In Value: ${product.product_tradeval}
-      </p>
-
-        
-      <div className="space-x-3">
-        
-      <button
-        key={product.product_id}
-        onClick={() => addToCart(product)}
-
-        
-
-        type="button"
-        className="font-mainfont mt-4 inline-block rounded bg-secondary text-light px-4 py-2 text-lg font-bold
-        shadow-md  hover:bg-pink-500 hover:text-xl
-        "
-        data-te-ripple-init
 
 
-          
-
-        data-te-ripple-color="light">    
-        Add to Cart
-      </button>
-   
-     <button
-        type="button"
-        className="font-mainfont inline-block rounded bg-tertiary text-dark px-4 py-2 text-lg font-bold
-        hover:bg-yellow-400 shadow-md hover:text-xl
-        "
-        data-te-ripple-init
-        onClick={() => tradeInCart(product)}
-
-        data-te-ripple-color="light">
-        Trade In
-      </button>
-   
-      </div>
-<div>
-  
-      </div>
-      
-    </div>
-  </div>
-
-<p className="mb-2 text-base text-dark">
-
-</p>
-
-            </div>
-
-
-
-  );
-})}
-</div>
-
-
-<div className="flex  mt-12 gap-1
-
-
-">
-<button className="bg-secondary hover:bg-pink-500 text-light font-bold py-2 px-4 rounded">  
-
-Prev 
-</button>
-
-
-<button className="bg-secondary hover:bg-pink-500 text-light font-bold py-2 px-4 rounded">
-Next
-</button>
-</div>
 
 
 
