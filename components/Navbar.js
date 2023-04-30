@@ -79,7 +79,7 @@ export function NavBar() {
       ">
       
         <div key={total} className="indicator  ">
-        <Link href="/checkout/cart"> <button className="icon-32 material-icons text-light "
+        <Link href="/checkout"> <button className="icon-32 material-icons text-light "
   >shopping_bag</button> </Link>
 
           <span className="border-none shadow-lg badge badge-sm bg-tertiary text-dark indicator-item ">{cartTotal (cart)}</span>
