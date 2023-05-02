@@ -7,10 +7,11 @@ function TradeSteps() {
     return (
    //three columns with text that stacks on mobile
          <section
-         className="bg-tertiary mx-10 md:mx-20
+         className="bg-tertiary mx-10 md:mx-20 
          justify-center items-center -mt-28 rounded-lg shadow-lg  shadow-gray-300
          ">
-            <div className="flex flex-col md:flex-row justify-center items-center mx-12  py-6  md:space-x-12">
+            <div className="xl:container 
+         mx-auto flex flex-col md:flex-row justify-center items-center  px-4 py-6  md:space-x-12">
                <div className="mt-4  flex flex-col justify-center items-center  md:justify-start md:w-1/3 ">
                <i className="icon-48 mb-2 material-icons font-material text-dark 
                " >autorenew</i> 

@@ -1,6 +1,14 @@
 import {query} from "@/lib/db";
 
-
+//get products that match the id of a url
+export async function getProductById(id) {
+    const results = await query({
+      query: "SELECT * FROM products WHERE product_id = ?",
+      values: [id],
+    });
+    return results[0];
+  }
+  
 
 //get products from database
 export default async function handler(req, res) {
@@ -38,10 +46,16 @@ export default async function handler(req, res) {
     if (req.method === "PUT") {
       const productId = req.body.product_id;
       const productName = req.body.product_name;
+      const productPrice = req.body.product_price;
       const updateProducts = await query({
-        query: "UPDATE products SET product_name = ? WHERE product_id = ?",
-        values: [productName, productId],
+       //query to update product name and price
+        query: "UPDATE products SET product_name = ?, product_price = ? WHERE product_id = ?",
+      
+
+        
+        values: [productName, productPrice, productId],
       });
+
       const result = updateProducts.affectedRows;
       if (result) {
         message = "success";
@@ -51,6 +65,7 @@ export default async function handler(req, res) {
       const product = {
         product_id: productId,
         product_name: productName,
+        product_price: productPrice,
       };
       res.status(200).json({ response: { message: message, product: product } });
     }

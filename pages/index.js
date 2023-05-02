@@ -5,17 +5,21 @@ import { Hero } from "@/components/Hero";
 import TradeSteps from "@/components/Tradesteps";
 import { NavBar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import Link from "next/link";
 
 
 
 
-//limits product_name name to specified length 
+// This function limits the length of a product title to at most 35 characters.
+// If the title is longer than 35 characters, the function adds an ellipsis at the end of the title.
 export function limitProductTitle(productName) {
   if (productName.length > 35) {
       return productName.substring(0, 25) + "...";
   }
   return productName;
 }
+
+
 
 export function tradeInCart(product) {
   window.location.reload(true);
@@ -66,8 +70,16 @@ export function ProductPagination({ products }) {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <div>
-    <div  className='   grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4  gap-10
+    <div
+    className="
+    xl:container  
+    mx-auto
+    "
+    >
+      <h2 className="text-4xl font-mainfont font-bold  text-secondary pt-10 pb-2">Shop Games</h2>
+
+    <div  className='   grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 gap-10
+    
 
 '>
         
@@ -76,11 +88,14 @@ export function ProductPagination({ products }) {
                     
 <div
     className="block max-w-sm mt-sm rounded-lg bg-light shadow-lg ">
-    <a href="#!">
+
+    <Link href={`/${product.product_id}`} className="block max-w-sm rounded-lg bg-light shadow-lg hover:shadow-xl transition-shadow duration-200 ease-in-out">
+    
+   
     <img className="rounded-t-lg" src={"https://raw.githubusercontent.com/cbarnett358/levelUP-Images/main/levelup-game-covers/" + product.product_id + ".png"} alt="Game Cover Art"/>
 
       
-    </a>
+    </Link>
     <div className="p-6">
    
       <h5
@@ -163,7 +178,7 @@ export function ProductPagination({ products }) {
 <button
 disabled={currentPage === 1 ? true : false}
 onClick={() => paginate(currentPage - 1)}
-className="bg-secondary hover:bg-pink-500 text-light font-bold py-2 px-4 rounded"
+className="bg-tertiary hover:bg-pink-500 text-dark font-bold py-2 px-4 rounded"
 
 >  
 
@@ -229,7 +244,7 @@ export default function Home() {
   const response = await res.json();
   console.log(response.products);
   setProducts(response.products);
-  //add pagination to products page
+ 
 
     
 
@@ -255,7 +270,7 @@ export default function Home() {
   return (
 <> {" "}
 <Head>
-<title>Products</title>
+<title>levelUP Retro Video Game Exchange</title>
 
 
 </Head>
@@ -266,7 +281,6 @@ export default function Home() {
   <TradeSteps></TradeSteps>
 <section className="container  mx-20 ">
  
-<h2 className="text-4xl font-mainfont font-bold  text-secondary pt-10 pb-2">Shop Games</h2>
 
 
 

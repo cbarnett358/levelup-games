@@ -10,7 +10,8 @@ export function Hero() {
     
     
     bg-light">
- <div className="hero-content flex-col mx-20 max-w-7lg
+ <div className="hero-content flex-col mx-20 max-w-7lg  
+
  lg:flex-row-reverse ">
    
     <img src="/leveluphero.png" className="max-w-xs md:max-w-md lg:max-w-lg rounded-lg " />
