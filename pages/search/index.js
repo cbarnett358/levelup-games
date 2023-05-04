@@ -50,9 +50,8 @@ export default function Search({ products }) {
                 {searchResults.length} results for {search}
               </p>
               <div className="flex flex-wrap justify-around max-w-4xl mt-6 sm:w-full">
-                {searchResults.map((product) => (
-                <div
-                className="block max-w-sm mt-sm rounded-lg bg-light shadow-lg ">
+              {searchResults.map((product) => (
+  <div key={product.product_id} className="block max-w-sm mt-sm rounded-lg bg-light shadow-lg ">
             
                 <Link href={`/${product.product_id}`} className="block max-w-sm rounded-lg bg-light shadow-lg hover:shadow-xl transition-shadow duration-200 ease-in-out">
                 
