@@ -80,7 +80,6 @@ export function ProductPagination({ products }) {
 
     <div  className='   grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 gap-10
     
-
 '>
         
               {currentProducts.map((product) => (
@@ -172,8 +171,6 @@ export function ProductPagination({ products }) {
 
 
 <div className="flex  mt-12 gap-1
-
-
 ">
 <button
 disabled={currentPage === 1 ? true : false}
@@ -307,6 +304,3 @@ export default function Home() {
 }
 
   
-
-
-

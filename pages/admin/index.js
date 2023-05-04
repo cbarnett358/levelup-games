@@ -121,7 +121,7 @@ function TablePagination({ products }) {
                                     <td className="text-base border text-tertiary ">
       <ProductRating rating={product.product_rating} />
       </td>
-      <td className="font-mainfont text-lg">{product.product_description}</td>
+      <td className="border font-mainfont text-lg">{product.product_description}</td>
                     </tr>
                 ))}
             </tbody>
@@ -301,7 +301,7 @@ export default function Home() {
   return (
 <main className="bg-base-200">
     <NavBar></NavBar>
-    <div className="container my-12 mx-20">      <h1 className="leading-none text-secondary font-mainfont text-6xl lg:text-5xl font-bold">Super Secret Admin Page</h1>
+    <div className="container my-12 mx-20 bg-base-200" >      <h1 className="leading-none text-secondary font-mainfont text-6xl lg:text-5xl font-bold">Super Secret Admin Page</h1>
 
        
     <div className="flex flex-col w-full lg:flex-row mt-6">

@@ -1,7 +1,11 @@
+//make a search bar component that is reusable to search for products from the database
+
 import React from 'react'
-import Image from 'next/image'
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import SearchBar from './SearchBar';
+
+
 
 function cartItemsTotal (cart) {
   let total = 0;
@@ -19,10 +23,6 @@ function cartTotal (cart) {
   })
   return total;
 }
-
-
-
-
 
 
 export function NavBar() {
@@ -50,7 +50,11 @@ export function NavBar() {
     }, []);
 
     return (
-      <div className="navbar bg-primary py-4">
+
+   
+  
+      <div className="navbar bg-primary py-4">     
+
     <div className="flex-1 ml-8">
     <Link href="/"> 
       
@@ -62,18 +66,26 @@ export function NavBar() {
       </div>
       <div className="flex-none gap-2 mr-8">
         
-      <div className="border-noneform-control">
-  <div className="input-group  ">
-    <input type="text" placeholder="Search…" className="input bg-light border-none " />
-    <button className="btn btn-square bg-secondary
-    hover:bg-secondary
-    border-none
-    ">
-      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-light" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-    </button>
-  </div>
-</div>
+      <div className=" 
+      
+      
+      hidden md:flex flex-row items-center justify-center gap-2
+      ">
+      <SearchBar></SearchBar>
+</div> <div className="dropdown dropdown-end  
+      md:hidden
+       
+">
+      <label tabIndex={0} className="btn btn-ghost btn-circle ">
+      <button className="icon-32 material-icons text-light "
+  >search</button>
+      </label>
+      <ul tabIndex={0} className="mt-3 p-2 shadow menu  dropdown-content bg-base-100 rounded-box w-content">
         
+        <SearchBar></SearchBar>
+      </ul>
+    </div>
+
       <label tabIndex={0} className="btn btn-ghost btn-circle
      hover:btn-border-none
       ">
