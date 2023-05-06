@@ -10,12 +10,13 @@ export function Hero() {
     
     
     bg-light">
- <div className="hero-content flex-col mx-20 max-w-7lg  
+ <div className="hero-content flex-col   xl:container  
+    mx-auto  
 
- lg:flex-row-reverse ">
+ lg:flex-row-reverse  ">
    
     <img src="/leveluphero.png" className="max-w-xs md:max-w-md lg:max-w-lg rounded-lg " />
-    <div>
+    <div >
         
       <h1 className="leading-none text-secondary font-mainfont text-6xl lg:text-7xl font-bold">levelUP Your Collection</h1>
       <p className="pb-6 text-dark pt-3 mr-6

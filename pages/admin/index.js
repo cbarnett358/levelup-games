@@ -93,6 +93,8 @@ function TablePagination({ products }) {
                             >Product Platform
                             {sortColumn === "product_platform" && sortDirection === 1 && <>&#x25BC;</>}
                             </th>
+                            
+                          
 
                             <th scope="col" className="font-mainfont border text-lg bg-primary"
                             onClick={() => handleSortClick("product_rating")}
@@ -127,8 +129,10 @@ function TablePagination({ products }) {
             </tbody>
             <tfoot>
                 <tr>
-                    <td colSpan="4">
-                        <div className="flex justify-between items-center">
+                    <td colSpan="">
+                        <div className="flex
+                      gap-2
+                        ">
                             <button
                                 onClick={() => paginate(currentPage - 1)}
                                 className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l"
@@ -159,10 +163,15 @@ function TablePagination({ products }) {
 
 export default function Home() {
   const productNameRef = useRef();
-  const productPriceRef = useRef();
+
   const productIDToDeleteRef = useRef();
   const productIDToUpdateRef = useRef();
   const productPriceToUpdateRef = useRef();
+  const productTradeValToUpdateRef = useRef();
+  const productPlatformToUpdateRef = useRef();
+  const productRatingToUpdateRef = useRef();
+  const productDescriptionToUpdateRef = useRef();
+
   const productNameToUpdateRef = useRef();
   const [products, setProducts] = useState([]);
   const [updated, setUpdated] = useState(false);
@@ -249,6 +258,11 @@ export default function Home() {
     const productIDToUpdate = productIDToUpdateRef.current.value.trim();
     const productNameToUpdate = productNameToUpdateRef.current.value.trim();
     const productPriceToUpdate = productPriceToUpdateRef.current.value.trim();
+    const productTradeValToUpdate = productTradeValToUpdateRef.current.value.trim();
+    const productPlatformToUpdate = productPlatformToUpdateRef.current.value.trim();
+    const productRatingToUpdate = productRatingToUpdateRef.current.value.trim();
+    const productDescriptionToUpdate = productDescriptionToUpdateRef.current.value.trim();
+
 
     if (!productIDToUpdate.length) return;
     const postData = {
@@ -260,6 +274,11 @@ export default function Home() {
         product_id: productIDToUpdate,
         product_name: productNameToUpdate,
         product_price: productPriceToUpdate,
+        product_tradeval: productTradeValToUpdate,
+        product_platform: productPlatformToUpdate,
+        product_rating: productRatingToUpdate,
+        product_description: productDescriptionToUpdate,
+
       }),
     };
     const res = await fetch(
@@ -272,13 +291,24 @@ export default function Home() {
     const productIdUpdated = parseFloat(response.response.product.product_id);
     const productUpdatedName = response.response.product.product_name;
     const productUpdatedPrice = response.response.product.product_price;
+    const productUpdatedTradeVal = response.response.product.product_tradeval;
+    const productUpdatedPlatform = response.response.product.product_platform;
+    const productUpdatedRating = response.response.product.product_rating;
+    const productUpdatedDescription = response.response.product.product_description;
+
     //updating state
     const productsStateAfterUpdate = products.map((product) => {
       if (product.product_id === productIdUpdated) {
         const productUpdated = {
           ...product,
+          
           product_name: productUpdatedName,
             product_price: productUpdatedPrice,
+            product_tradeval: productUpdatedTradeVal,
+            product_platform: productUpdatedPlatform,
+            product_rating: productUpdatedRating,
+            product_description: productUpdatedDescription,
+
 
 
         };
@@ -299,28 +329,47 @@ export default function Home() {
   }, []);
 
   return (
-<main className="bg-base-200">
+<main className=" bg-light">
     <NavBar></NavBar>
-    <div className="container my-12 mx-20 bg-base-200" >      <h1 className="leading-none text-secondary font-mainfont text-6xl lg:text-5xl font-bold">Super Secret Admin Page</h1>
+    <div className="container my-12 mx-20  bg-light" >      <h1 className="leading-none text-secondary font-mainfont text-6xl lg:text-5xl font-bold">Super Secret Admin Page</h1>
 
        
     <div className="flex flex-col w-full lg:flex-row mt-6">
-  <div className="grid flex-grow h-content card bg-base-300 rounded-box place-items-center py-6"><div className="col">
+  <div className="grid flex-grow h-content card bg-white rounded-box place-items-center py-6"><div className="col">
   <h2
-  className="text-xl font-bold  text-secondary mb-4"
+  className="text-xl font-bold   text-secondary mb-4"
   >Update Products</h2> 
                 <div className="mb-3">
                     <label htmlFor="product_id_to_update" className="form-label">Product ID:</label>
-                    <input type="text" className="bg-base-200 form-control" id="product_id_to_update" ref={productIDToUpdateRef} />
+                    <input type="text" className="bg-light form-control" id="product_id_to_update" ref={productIDToUpdateRef} />
                 </div>
-                <div className="mb-3">
+                <div className="mb-3 ">
                     <label htmlFor="product_name_to_update" className="form-label">Product Name:</label>
-                    <input type="text" className="bg-base-200 form-control" id="product_name_to_update" ref={productNameToUpdateRef} />
+                    <input type="text" className="bg-light form-control" id="product_name_to_update" ref={productNameToUpdateRef} />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="product_price_to_update" className="form-label">Product Price:</label>
-                    <input type="text" className="bg-base-200 form-control" id="product_price_to_update" ref={productPriceToUpdateRef} />
+                    <input type="text" className="bg-light form-control" id="product_price_to_update" ref={productPriceToUpdateRef} />
                 </div>
+                <div className="mb-3">
+                    <label htmlFor="product_tradeval_to_update" className="form-label">Product Trade Value:</label>
+                    <input type="text" className="bg-light form-control" id="product_tradeval_to_update" ref={productTradeValToUpdateRef} />
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="product_platform_to_update" className="form-label">Product Platform:</label>
+                    <input type="text" className="bg-light form-control" id="product_platform_to_update" ref={productPlatformToUpdateRef} />
+                </div>
+          
+                <div className="mb-3">
+                    <label htmlFor="product_rating_to_update" className="form-label">Product Rating:</label>
+                    <input type="text" className="bg-light form-control" id="product_rating_to_update" ref={productRatingToUpdateRef} />
+                </div>
+
+                <div className="mb-3">
+                    <label htmlFor="product_description_to_update" className="form-label">Product Description:</label>
+                    <input type="text" className="bg-light form-control" id="product_description_to_update" ref={productDescriptionToUpdateRef} />
+                </div>
+                
 
 
                 <button className="btn btn-primary bg-secondary 
@@ -332,13 +381,13 @@ export default function Home() {
   <div className="divider lg:divider-horizontal"></div> 
 
 
-  <div className="grid flex-grow h-content py-6 card bg-base-300 rounded-box place-items-center">  <div className="col">
+  <div className="grid flex-grow h-content py-6 card bg-white rounded-box place-items-center">  <div className="col">
   <h2
   className="text-xl font-bold  text-secondary mb-4"
   >Add Products</h2>
                 <div className="mb-3">
                     <label htmlFor="product_name" className="form-label">Product Name</label>
-                    <input type="text" className="form-control" id="product_name" ref={productNameRef} />
+                    <input type="text" className="form-control bg-light" id="product_name" ref={productNameRef} />
                 </div>
                 <button className="btn btn-primary bg-green-500 border-none" onClick={addProduct}>Add Product</button>
                 {created && <p className="text-success">Product created successfully</p>}
@@ -347,11 +396,11 @@ export default function Home() {
   <div className="divider lg:divider-horizontal"></div> 
 
 
-  <div className="grid flex-grow h-content py-12 card bg-base-300 rounded-box place-items-center">   <div className="col">
+  <div className="grid flex-grow h-content py-12 card bg-white rounded-box place-items-center">   <div className="col">
                 <h3>Delete Product</h3>
                 <div className="mb-3">
                     <label htmlFor="product_id_to_delete" className="form-label">Product ID</label>
-                    <input type="text" className="form-control" id="product_id_to_delete" ref={productIDToDeleteRef} />
+                    <input type="text" className="form-control bg-light" id="product_id_to_delete" ref={productIDToDeleteRef} />
                 </div>
                 <button className="btn btn-primary bg-red-500 border-none" onClick={() => deleteProduct(productIDToDeleteRef.current.value)}>Delete Product</button>
                 {deleted && <p className="text-success">Product deleted successfully</p>}

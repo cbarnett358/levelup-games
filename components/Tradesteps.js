@@ -5,9 +5,8 @@ function TradeSteps() {
 
 
     return (
-   //three columns with text that stacks on mobile
          <section
-         className="bg-tertiary mx-10 md:mx-20 
+         className="bg-tertiary mx-auto py-6   xl:container
          justify-center items-center -mt-28 rounded-lg shadow-lg  shadow-gray-300
          ">
             <div className="xl:container 

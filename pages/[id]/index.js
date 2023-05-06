@@ -4,10 +4,10 @@ import Error from 'next/error';
 import { NavBar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import { ProductRating } from '..';
+import Link from 'next/link';
+import { addToCart } from '../index';
+import { tradeInCart } from '../index';
 
-
-  
-  
 
 export default function ProductPage() {
   const [product, setProduct] = useState(null);
@@ -27,47 +27,50 @@ export default function ProductPage() {
     getProduct();
   }, [router.query.id]);
 
+
   if (loading) {
-    return <div
-    className='bg-base-200
-    min-h-screen'
-    >Loading...</div>;
+    return <div>Loading...</div>;
   }
 
   if (!product) {
-    return <Error statusCode={404} />;
+    return <div>Loading...</div>;
   }
+  
 
   return (
     <main
-    className='bg-base-200'
+    className='bg-light '
     >
       <NavBar></NavBar>
-      <div className=" text-sm breadcrumbs">
+      <div className=" xl:container  
+    mx-auto min-h-screen">
+      <div className="  breadcrumbs mx-5 font-mainfont text-dark text-lg ">
   <ul>
     <li>
-      <a>
+     <Link href="/">
+
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="w-4 h-4 mr-2 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
         Home
-      </a>
+      </Link>
     </li> 
     <li>
-      <a>
+    
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="w-4 h-4 mr-2 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
-        Documents
-      </a>
+        {product.product_name}
+     
     </li> 
-    <li>
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="w-4 h-4 mr-2 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-      Add Document
-    </li>
+  
   </ul>
 </div>
-      <div className="hero bg-base-200 mt-12">
+      <div className="hero  ">
+        
   <div className="hero-content flex-col lg:flex-row">
+    
     <img src={"https://raw.githubusercontent.com/cbarnett358/levelUP-Images/main/levelup-game-covers/" + product.product_id + ".png"} alt="Game Cover Art"
  className="max-w-sm rounded-lg shadow-2xl" />
     <div>
+    <div className="badge badge-outline">{product.product_platform}</div>
+
       <h1 className="text-secondary text-5xl font-bold font-mainfont">{product.product_name}</h1>
       <div className="text-base text-tertiary ">
       <ProductRating rating={product.product_rating} />
@@ -81,11 +84,20 @@ export default function ProductPage() {
         ${product.product_tradeval}
       </p>
       
-      <button className="btn btn-primary">Get Started</button>
+      <button className="btn   border-none bg-secondary btn-md font-bold font-mainfont text-light text-lg"
+      onClick={() => addToCart(product)}
+
+      >Add To Cart</button> 
+      
+      <button className="btn  border-none bg-tertiary btn-md font-bold font-mainfont text-dark text-lg"
+      onClick={() => tradeInCart(product)}
+      >Trade In</button>
     </div>
   </div>
-  
-</div>
+</div></div>
+
+
+        
 <Footer></Footer>
 
     </main>

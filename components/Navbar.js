@@ -51,11 +51,12 @@ export function NavBar() {
 
     return (
 
-   
+   <main className='bg-primary'>
   
-      <div className="navbar bg-primary py-4">     
+      <div className="navbar py-4      xl:container  
+ mx-auto      ">     
 
-    <div className="flex-1 ml-8">
+    <div className="flex-1 ml-8 ">
     <Link href="/"> 
       
           
@@ -100,6 +101,6 @@ export function NavBar() {
      
     </div>
       </div>
-
+      </main>
     )
 }
