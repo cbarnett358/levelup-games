@@ -55,7 +55,7 @@ function TablePagination({ products }) {
   };
 
   return (
-    <div className="overflow-x-auto bg-light">
+    <div className="overflow bg-light">
       <table className="table table-zebra w-full ">
         <thead className=" text-light  ">
           <tr>
