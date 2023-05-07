@@ -21,44 +21,6 @@ export function limitProductTitle(productName) {
 
 
 
-export function tradeInCart(product) {
-  window.location.reload(true);
-
-  const tradecart = JSON.parse(localStorage.getItem("tradecart")) || [];
-  const productExists = tradecart.find((p) => p.product_id === product.product_id);
-  if (productExists) {
-
-      productExists.quantity++;
-      productExists.tradeval++;
-
-  } else {
-
-      tradecart.push({ ...product, quantity: 1, tradeval: product.product_tradeval });
-  }
-  localStorage.setItem("tradecart", JSON.stringify(tradecart));
-}
-
-
-//adds to cart and refreshes page to update cart
-export function addToCart(product) {
-  console.log('hey',product);
-
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
-    //REFRESH THE CART
-
-    window.location.reload(true);
-
-    const productExists = cart.find((p) => p.product_id === product.product_id);
-    if (productExists) {
-        productExists.quantity++;
-        productExists.price++;
-        
-    } else {
-        cart.push({ ...product, quantity: 1, price: product.product_price });
-    }
-    localStorage.setItem("cart", JSON.stringify(cart));
-}
-
 //pagination function
 export function ProductPagination({ products }) {
   const [currentPage, setCurrentPage] = useState(1);
@@ -84,18 +46,18 @@ export function ProductPagination({ products }) {
         
               {currentProducts.map((product) => (
                   <div  key={product.product_id}>
-                      <Link href={`/${product.product_id}`} className="block max-w-sm rounded-lg bg-light shadow-lg hover:shadow-xl transition-shadow duration-200 
+                      <Link href={`/${product.product_id}`} className="block max-w-sm rounded-lg  shadow-lg hover:shadow-xl transition-shadow duration-200 
                       ease-out">
                  
 
-      <div className="card w-auto bg-base-100 shadow-xl 
+      <div className="card w-auto  bg-light  shadow-xl 
       hover:scale-105 transition duration-500 ease-in-out  hover:shadow-xl 
       ">
   <figure>
     <img src={"https://raw.githubusercontent.com/cbarnett358/levelUP-Images/main/levelup-game-covers/" + product.product_id + ".png"} alt="Shoes" />
     
     </figure>
-  <div className="card-body bg-light p-4">      
+  <div className="card-body p-4">      
   <div className="badge badge-outline font-mainfont font dark font-bold ">{product.product_platform}</div>
   
  
@@ -104,7 +66,7 @@ export function ProductPagination({ products }) {
     <div className="text-xs text-tertiary ">
       <ProductRating rating={product.product_rating} />
       </div>
-    <h3 className="mb-2 font-mainfont text-lg" >
+    <h3 className="mb-2 font-mainfont text-lg font-bold" >
       ${product.product_price}
       <div className=" ml-2 badge badge-secondary font-mainfont text-lg">Trade In: ${product.product_tradeval}</div>
     </h3>

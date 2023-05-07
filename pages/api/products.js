@@ -24,9 +24,15 @@ export default async function handler(req, res) {
     //add products to database
     if (req.method === "POST") {
       const productName = req.body.product_name;
+      const productPrice = req.body.product_price;
+      const productTradeVal = req.body.product_tradeval;
+      const productPlatform = req.body.product_platform;
+      const productRating = req.body.product_rating;
+      const productDescription = req.body.product_description;
+
       const addProducts = await query({
-        query: "INSERT INTO products (product_name) VALUES (?)",
-        values: [productName, ],
+        query: "INSERT INTO products (product_name, product_price, product_tradeval, product_platform, product_rating, product_description) VALUES (?, ?, ?, ?, ?, ?)",
+        values: [productName, productPrice, productTradeVal, productPlatform, productRating, productDescription],
       });
       let product = [];
       if (addProducts.insertId) {
@@ -37,6 +43,12 @@ export default async function handler(req, res) {
       product = {
         product_id: addProducts.insertId,
         product_name: productName,
+        product_price: productPrice,
+        product_tradeval: productTradeVal,
+        product_platform: productPlatform,
+        product_rating: productRating,
+        product_description: productDescription,
+        
 
       };
       res.status(200).json({ response: { message: message, product: product } });
@@ -78,7 +90,7 @@ export default async function handler(req, res) {
         product_id: productId,
         product_name: productName,
         product_price: productPrice,
-        product_trade_val: productTradeVal,
+        product_tradeval: productTradeVal,
         product_platform: productPlatform,
         product_rating: productRating,
         product_description: productDescription,

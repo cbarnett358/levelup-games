@@ -6,6 +6,7 @@ import { Footer } from "@/components/Footer";
 
 
 
+
 //paginate the table to show 10 products per page
 function TablePagination({ products }) {
   const [currentPage, setCurrentPage] = useState(1);
@@ -54,13 +55,13 @@ function TablePagination({ products }) {
   };
 
   return (
-    <div className="overflow-x-auto">
-      <table className="table table-zebra w-full">
-        <thead className=" text-light ">
+    <div className="overflow-x-auto bg-light">
+      <table className="table table-zebra w-full ">
+        <thead className=" text-light  ">
           <tr>
             <th
               scope="col"
-              className=" font-mainfont border text-lg bg-primary"
+              className=" font-mainfont border text-lg bg-primary "
               onClick={() => handleSortClick("product_id")}
             >
               Product ID {sortColumn === "product_id" && sortDirection === 1 && <>&#x25BC;</>}
@@ -112,10 +113,12 @@ function TablePagination({ products }) {
                    
                 </tr>
             </thead>
-            <tbody>
+            <tbody className="bg-light">
                 {currentProducts.map((product) => (
                     <tr key={product.product_id}>
-                           <td className="font-mainfont border text-lg">{product.product_id}</td>
+                           <td className="font-mainfont border text-lg">
+                           
+                            {product.product_id}</td>
                                     <td className="font-mainfont border text-lg">{product.product_name}</td>
                                     <td className="font-mainfont border text-lg">${product.product_price}</td>
                                     <td className="font-mainfont border text-lg">${product.product_tradeval}</td>
@@ -163,6 +166,12 @@ function TablePagination({ products }) {
 
 export default function Home() {
   const productNameRef = useRef();
+  const productPriceRef = useRef();
+  const productTradeValRef = useRef();
+  const productPlatformRef = useRef();
+  const productRatingRef = useRef();
+  const productDescriptionRef = useRef();
+
 
   const productIDToDeleteRef = useRef();
   const productIDToUpdateRef = useRef();
@@ -183,6 +192,7 @@ export default function Home() {
   async function addProduct() {
     const productName = productNameRef.current.value.trim();
     if (productName.length < 3) return;
+  
     const postData = {
       method: "POST",
       headers: {
@@ -190,10 +200,14 @@ export default function Home() {
       },
       body: JSON.stringify({
         product_name: productName,
-        product_price: productPrice,
-
+        product_price: productPriceRef.current.value,
+        product_tradeval: productTradeValRef.current.value,
+        product_platform: productPlatformRef.current.value,
+        product_rating: productRatingRef.current.value,
+        product_description: productDescriptionRef.current.value,
       }),
     };
+  
     if (productName.length < 3) return;
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_URL}../../api/products`,
@@ -203,17 +217,24 @@ export default function Home() {
     console.log(response);
     if (response.response.message !== "success") return;
     const newproduct = response.response.product;
-    setProducts([
-      ...products,
+    setProducts((prevProducts) => [
+      ...prevProducts,
       {
         product_id: newproduct.product_id,
         product_name: newproduct.product_name,
         product_price: newproduct.product_price,
+        product_tradeval: newproduct.product_tradeval,
+        product_platform: newproduct.product_platform,
+        product_rating: newproduct.product_rating,
+        product_description: newproduct.product_description,
       },
     ]);
+    await getProducts();
+
+    // Update the state with the new product
     setCreated(true);
   }
-
+  
   async function getProducts() {
     const postData = {
       method: "GET",
@@ -329,9 +350,11 @@ export default function Home() {
   }, []);
 
   return (
-<main className=" bg-light">
+<main className=" bg-light ">
     <NavBar></NavBar>
-    <div className="container my-12 mx-20  bg-light" >      <h1 className="leading-none text-secondary font-mainfont text-6xl lg:text-5xl font-bold">Super Secret Admin Page</h1>
+    <div className="xl:container my-12 
+    mx-auto px-2 md:px-10 
+    bg-light" >      <h1 className="leading-none text-secondary font-mainfont text-6xl lg:text-5xl font-bold">Super Secret Admin Page</h1>
 
        
     <div className="flex flex-col w-full lg:flex-row mt-6">
@@ -377,7 +400,12 @@ export default function Home() {
                 " onClick={updateProduct}>Update Product</button>
                 {updated && <p className="text-success">Product updated successfully</p>}
                 {updatedError && <p className="text-danger">Product update failed</p>}
-            </div></div> 
+
+              
+            </div>
+            
+            
+            </div> 
   <div className="divider lg:divider-horizontal"></div> 
 
 
@@ -386,11 +414,29 @@ export default function Home() {
   className="text-xl font-bold  text-secondary mb-4"
   >Add Products</h2>
                 <div className="mb-3">
+                   
                     <label htmlFor="product_name" className="form-label">Product Name</label>
                     <input type="text" className="form-control bg-light" id="product_name" ref={productNameRef} />
+
+                    <label htmlFor="product_price" className="form-label">Product Price</label>
+                    <input type="text" className="form-control bg-light" id="product_price" ref={productPriceRef} />
+
+                    <label htmlFor="product_tradeval" className="form-label">Product Trade Value</label>
+                    <input type="text" className="form-control bg-light" id="product_tradeval" ref={productTradeValRef} />
+
+                    <label htmlFor="product_platform" className="form-label">Product Platform</label>
+                    <input type="text" className="form-control bg-light" id="product_platform" ref={productPlatformRef} />
+
+                    <label htmlFor="product_rating" className="form-label">Product Rating</label>
+                    <input type="text" className="form-control bg-light" id="product_rating" ref={productRatingRef} />
+
+                    <label htmlFor="product_description" className="form-label">Product Description</label>
+                    <input type="text" className="form-control bg-light" id="product_description" ref={productDescriptionRef} />
+
+
                 </div>
-                <button className="btn btn-primary bg-green-500 border-none" onClick={addProduct}>Add Product</button>
-                {created && <p className="text-success">Product created successfully</p>}
+<               button className="btn btn-primary bg-secondary border-none" onClick={addProduct}>Add Product</button
+>                {created && <p className="text-success">Product created successfully</p>}
             </div></div>
 
   <div className="divider lg:divider-horizontal"></div> 
@@ -401,6 +447,7 @@ export default function Home() {
                 <div className="mb-3">
                     <label htmlFor="product_id_to_delete" className="form-label">Product ID</label>
                     <input type="text" className="form-control bg-light" id="product_id_to_delete" ref={productIDToDeleteRef} />
+                    
                 </div>
                 <button className="btn btn-primary bg-red-500 border-none" onClick={() => deleteProduct(productIDToDeleteRef.current.value)}>Delete Product</button>
                 {deleted && <p className="text-success">Product deleted successfully</p>}

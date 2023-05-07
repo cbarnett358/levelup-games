@@ -18,7 +18,12 @@ export default function SearchBar() {
   };
 
   return (
-    <form onSubmit={handleSubmit}><div className="input-group  ">
+    <form 
+
+    className='relative w-full
+    align-middle
+    '
+    onSubmit={handleSubmit}><div className="input-group   ">
        <input
       htmlFor="search"
         type="text"

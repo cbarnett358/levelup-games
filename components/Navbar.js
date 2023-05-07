@@ -86,7 +86,7 @@ export function NavBar() {
         <SearchBar></SearchBar>
       </ul>
     </div>
-
+   
       <label tabIndex={0} className="btn btn-ghost btn-circle
      hover:btn-border-none
       ">
@@ -95,10 +95,23 @@ export function NavBar() {
         <Link href="/checkout"> <button className="icon-32 material-icons text-light "
   >shopping_bag</button> </Link>
 
+          <span className="border-none shadow-lg badge badge-sm bg-secondary  text-light indicator-item ">{cartTotal (cart)}</span>
+          
+        </div>
+      </label>     
+
+      <label tabIndex={0} className="btn btn-ghost btn-circle
+     hover:btn-border-none
+      ">
+      
+        <div key={total} className="indicator  ">
+        <Link href="/checkout"> <button className="icon-32 material-icons text-light "
+  >autorenew</button> </Link>
+
           <span className="border-none shadow-lg badge badge-sm bg-tertiary text-dark indicator-item ">{cartTotal (cart)}</span>
+          
         </div>
       </label>
-     
     </div>
       </div>
       </main>

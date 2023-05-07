@@ -53,18 +53,18 @@ export default function Search({ products }) {
               <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 gap-8 ">
               {searchResults.map((product) => (
  <div  key={product.product_id}>
- <Link href={`/${product.product_id}`} className="block max-w-sm rounded-lg bg-light shadow-lg hover:shadow-xl transition-shadow duration-200 
+ <Link href={`/${product.product_id}`} className="block max-w-sm rounded-lg  shadow-lg hover:shadow-xl transition-shadow duration-200 
  ease-out">
 
 
-<div className="card w-auto bg-base-100 shadow-xl 
+<div className="card w-auto bg-light shadow-xl 
 hover:scale-105 transition duration-500 ease-in-out  hover:shadow-xl 
 ">
 <figure>
 <img src={"https://raw.githubusercontent.com/cbarnett358/levelUP-Images/main/levelup-game-covers/" + product.product_id + ".png"} alt="Shoes" />
 
 </figure>
-<div className="card-body bg-light p-4">      
+<div className="card-body p-4">      
 <div className="badge badge-outline font-mainfont font dark font-bold ">{product.product_platform}</div>
 
 
@@ -73,7 +73,7 @@ hover:scale-105 transition duration-500 ease-in-out  hover:shadow-xl
 <div className="text-xs text-tertiary ">
 <ProductRating rating={product.product_rating} />
 </div>
-<h3 className="mb-2 font-mainfont text-lg" >
+<h3 className="mb-2 font-mainfont text-lg font-bold" >
 ${product.product_price}
 <div className=" ml-2 badge badge-secondary font-mainfont text-lg">Trade In: ${product.product_tradeval}</div>
 </h3>

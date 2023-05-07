@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import Error from 'next/error';
 import { NavBar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import { ProductRating } from '..';
 import Link from 'next/link';
-import { addToCart } from '../index';
-import { tradeInCart } from '../index';
+
 
 
 export default function ProductPage() {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [cartQuantity, setCartQuantity] = useState(0); // New state for cart quantity
   const router = useRouter();
 
   useEffect(() => {
@@ -27,6 +26,45 @@ export default function ProductPage() {
     getProduct();
   }, [router.query.id]);
 
+  useEffect(() => {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const productExists = cart.find((p) => p.product_id === product?.product_id);
+
+    if (productExists) {
+      setCartQuantity(productExists.quantity);
+    } else {
+      setCartQuantity(0);
+    }
+  }, [product]);
+
+  const addToCart = (product) => {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const productExists = cart.find((p) => p.product_id === product.product_id);
+
+    if (productExists) {
+      productExists.quantity++;
+      productExists.price++;
+    } else {
+      cart.push({ ...product, quantity: 1, price: product.product_price });
+    }
+
+    localStorage.setItem('cart', JSON.stringify(cart));
+    setCartQuantity(cart.reduce((total, p) => total + p.quantity, 0));
+  };
+
+  const tradeInCart = (product) => {
+    const tradecart = JSON.parse(localStorage.getItem('tradecart')) || [];
+    const productExists = tradecart.find((p) => p.product_id === product.product_id);
+
+    if (productExists) {
+      productExists.quantity++;
+      productExists.tradeval++;
+    } else {
+      tradecart.push({ ...product, quantity: 1, tradeval: product.product_tradeval });
+    }
+
+    localStorage.setItem('tradecart', JSON.stringify(tradecart));
+  };
 
   if (loading) {
     return <div>Loading...</div>;
@@ -35,13 +73,12 @@ export default function ProductPage() {
   if (!product) {
     return <div>Loading...</div>;
   }
-  
-
   return (
     <main
     className='bg-light '
     >
-      <NavBar></NavBar>
+      <NavBar></NavBar>            
+
       <div className=" xl:container  
     mx-auto min-h-screen">
       <div className="  breadcrumbs mx-5 font-mainfont text-dark text-lg ">
@@ -61,6 +98,8 @@ export default function ProductPage() {
     </li> 
   
   </ul>
+  {cartQuantity}
+  
 </div>
       <div className="hero  ">
         
@@ -83,15 +122,23 @@ export default function ProductPage() {
       <p>
         ${product.product_tradeval}
       </p>
-      
-      <button className="btn   border-none bg-secondary btn-md font-bold font-mainfont text-light text-lg"
-      onClick={() => addToCart(product)}
+     
+    <div className="flex flex-row space-x-2">
+      <button
+        className="btn border-none bg-secondary btn-md font-bold font-mainfont  text-light text-lg"
+        onClick={() => addToCart(product)}
+      >
+        Add To Cart
+      </button>
+      <button
 
-      >Add To Cart</button> 
-      
-      <button className="btn  border-none bg-tertiary btn-md font-bold font-mainfont text-dark text-lg"
-      onClick={() => tradeInCart(product)}
-      >Trade In</button>
+        className="btn border-none bg-tertiary btn-md font-bold font-mainfont text-dark  text-lg"
+        onClick={() => tradeInCart(product)}
+      >
+
+        Trade In
+      </button>
+      </div>
     </div>
   </div>
 </div></div>
