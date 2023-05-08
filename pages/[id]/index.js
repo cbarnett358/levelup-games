@@ -75,12 +75,15 @@ export default function ProductPage() {
   }
   return (
     <main
-    className='bg-light '
+    className='bg-light 
+    '
     >
       <NavBar></NavBar>            
 
       <div className=" xl:container  
-    mx-auto min-h-screen">
+    mx-auto 
+    min-h-screen
+    ">
       <div className="  breadcrumbs mx-5 font-mainfont text-dark text-lg ">
   <ul>
     <li>
@@ -108,14 +111,14 @@ export default function ProductPage() {
     <img src={"https://raw.githubusercontent.com/cbarnett358/levelUP-Images/main/levelup-game-covers/" + product.product_id + ".png"} alt="Game Cover Art"
  className="max-w-sm rounded-lg shadow-2xl" />
     <div>
-    <div className="badge badge-outline">{product.product_platform}</div>
+    <div className="badge badge-outline text-dark">{product.product_platform}</div>
 
       <h1 className="text-secondary text-5xl font-bold font-mainfont">{product.product_name}</h1>
-      <div className="text-base text-tertiary ">
+      <div className="text-accent text-tertiary ">
       <ProductRating rating={product.product_rating} />
       </div>
       
-      <p className="font-mainfontpy-6">{product.product_description}</p>
+      <p className="font-mainfontpy-6 text-dark">{product.product_description}</p>
       <p className=''>
         ${product.product_price}
       </p>
@@ -132,7 +135,7 @@ export default function ProductPage() {
       </button>
       <button
 
-        className="btn border-none bg-tertiary btn-md font-bold font-mainfont text-dark  text-lg"
+        className="btn border-none bg-accent btn-md font-bold font-mainfont text-dark  text-lg"
         onClick={() => tradeInCart(product)}
       >
 

@@ -88,30 +88,30 @@ export function NavBar() {
     </div>
    
       <label tabIndex={0} className="btn btn-ghost btn-circle
-     hover:btn-border-none
+     hover:btn-border-none text-xs text-light font-mainfont  normal-case
       ">
       
         <div key={total} className="indicator  ">
         <Link href="/checkout"> <button className="icon-32 material-icons text-light "
-  >shopping_bag</button> </Link>
+  >shopping_cart</button> </Link>
 
           <span className="border-none shadow-lg badge badge-sm bg-secondary  text-light indicator-item ">{cartTotal (cart)}</span>
           
         </div>
-      </label>     
+    Cart </label>     
 
       <label tabIndex={0} className="btn btn-ghost btn-circle
-     hover:btn-border-none
+     hover:btn-border-none text-xs text-light font-mainfont  normal-case
       ">
       
         <div key={total} className="indicator  ">
         <Link href="/checkout"> <button className="icon-32 material-icons text-light "
   >autorenew</button> </Link>
 
-          <span className="border-none shadow-lg badge badge-sm bg-tertiary text-dark indicator-item ">{cartTotal (cart)}</span>
+          <span className="border-none shadow-lg badge badge-sm bg-accent text-dark indicator-item ">{cartTotal (cart)}</span>
           
         </div>
-      </label>
+     Trade-In </label>
     </div>
       </div>
       </main>

@@ -55,7 +55,7 @@ function TablePagination({ products }) {
   };
 
   return (
-    <div className="overflow bg-light">
+    <div className="overflow-x-auto bg-light">
       <table className="table table-zebra w-full ">
         <thead className=" text-light  ">
           <tr>
@@ -123,7 +123,7 @@ function TablePagination({ products }) {
                                     <td className="font-mainfont border text-lg">${product.product_price}</td>
                                     <td className="font-mainfont border text-lg">${product.product_tradeval}</td>
                                     <td className="font-mainfont border text-lg">{product.product_platform}</td>
-                                    <td className="text-base border text-tertiary ">
+                                    <td className="text-base border text-accent ">
       <ProductRating rating={product.product_rating} />
       </td>
       <td className="border font-mainfont text-lg">{product.product_description}</td>
@@ -189,6 +189,8 @@ export default function Home() {
   const [deleted, setDeleted] = useState(false);
   const [deletedError, setDeletedError] = useState(false);
 
+  
+  //Add product
   async function addProduct() {
     const productName = productNameRef.current.value.trim();
     if (productName.length < 3) return;
@@ -233,6 +235,9 @@ export default function Home() {
 
     // Update the state with the new product
     setCreated(true);
+    setTimeout(() => {
+      setCreated(false);
+    }, 3000);
   }
   
   async function getProducts() {
@@ -252,8 +257,15 @@ export default function Home() {
     console.log(response);
   }
 
+
+  // Delete product
   async function deleteProduct(id) {
     if (!id) return;
+  
+    // Show confirmation modal
+    const confirmed = await confirmDeleteModal();
+    if (!confirmed) return;
+  
     const postData = {
       method: "DELETE",
       headers: {
@@ -274,6 +286,16 @@ export default function Home() {
     setProducts(products.filter((a) => a.product_id !== idToRemove));
     setDeleted(true);
   }
+  
+  async function confirmDeleteModal() {
+    return new Promise((resolve) => {
+      const result = confirm("Are you sure you want to delete this product?");
+      resolve(result);
+    });
+  }
+  
+
+  // Update product
 
   async function updateProduct() {
     const productIDToUpdate = productIDToUpdateRef.current.value.trim();
@@ -342,6 +364,11 @@ export default function Home() {
     });
     setUpdated(true);
     setProducts(productsStateAfterUpdate);
+    setTimeout(() => {
+      setUpdated(false);
+    }
+    , 3000);
+
 
   }
 
@@ -395,10 +422,18 @@ export default function Home() {
                 
 
 
-                <button className="btn btn-primary bg-secondary 
+                <button className="btn btn-primary bg-secondary  
                 border-none
                 " onClick={updateProduct}>Update Product</button>
-                {updated && <p className="text-success">Product updated successfully</p>}
+             
+                {updated && <div className="text-success mt-4 
+                
+                ">   <div className="alert alert-success shadow-lg">
+ 
+    <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+    <span>Product Has Been Updated!</span>
+  </div>
+</div>}
                 {updatedError && <p className="text-danger">Product update failed</p>}
 
               
@@ -436,19 +471,26 @@ export default function Home() {
 
                 </div>
 <               button className="btn btn-primary bg-secondary border-none" onClick={addProduct}>Add Product</button
->                {created && <p className="text-success">Product created successfully</p>}
+>                {created && <div className="text-success">
+  <div className="alert alert-success shadow-lg mt-4">
+ 
+ <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+ <span>Product Created Successfully!</span>
+</div>
+  </div>}
             </div></div>
 
   <div className="divider lg:divider-horizontal"></div> 
 
 
   <div className="grid flex-grow h-content py-12 card bg-white rounded-box place-items-center">   <div className="col">
-                <h3>Delete Product</h3>
+                <h3  className="text-xl font-bold  text-secondary mb-4">Delete Product</h3>
                 <div className="mb-3">
                     <label htmlFor="product_id_to_delete" className="form-label">Product ID</label>
                     <input type="text" className="form-control bg-light" id="product_id_to_delete" ref={productIDToDeleteRef} />
                     
                 </div>
+                
                 <button className="btn btn-primary bg-red-500 border-none" onClick={() => deleteProduct(productIDToDeleteRef.current.value)}>Delete Product</button>
                 {deleted && <p className="text-success">Product deleted successfully</p>}
                 {deletedError && <p className="text-danger">Product delete failed</p>}

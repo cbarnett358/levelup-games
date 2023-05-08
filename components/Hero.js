@@ -10,7 +10,8 @@ export function Hero() {
     
     
     bg-light">
- <div className="hero-content flex-col   xl:container  
+ <div className="hero-content flex-col   
+ xl:container  
     mx-auto  
 
  lg:flex-row-reverse  ">

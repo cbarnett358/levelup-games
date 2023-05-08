@@ -51,24 +51,27 @@ export function ProductPagination({ products }) {
                  
 
       <div className="card w-auto  bg-light  shadow-xl 
+      
       hover:scale-105 transition duration-500 ease-in-out  hover:shadow-xl 
       ">
   <figure>
-    <img src={"https://raw.githubusercontent.com/cbarnett358/levelUP-Images/main/levelup-game-covers/" + product.product_id + ".png"} alt="Shoes" />
+    <img src={"https://raw.githubusercontent.com/cbarnett358/levelUP-Images/main/levelup-game-covers/" + product.product_id + ".png"} alt="Game Cover" 
+    
+    />
     
     </figure>
   <div className="card-body p-4">      
-  <div className="badge badge-outline font-mainfont font dark font-bold ">{product.product_platform}</div>
+  <div className="badge badge-outline font-mainfont font dark font-bold text-dark">{product.product_platform}</div>
   
  
     <h2 className="card-title font-mainfont text-2xl  font-bold text-secondary">  {limitProductTitle(product.product_name)}</h2>
    
-    <div className="text-xs text-tertiary ">
+    <div className="text-xs text-accent ">
       <ProductRating rating={product.product_rating} />
       </div>
-    <h3 className="mb-2 font-mainfont text-lg font-bold" >
+    <h3 className="mb-2 font-mainfont text-lg font-bold text-dark" >
       ${product.product_price}
-      <div className=" ml-2 badge badge-secondary font-mainfont text-lg">Trade In: ${product.product_tradeval}</div>
+      <div className=" ml-2 badge badge-secondary font-mainfont  text-light text-lg">Trade In: ${product.product_tradeval}</div>
     </h3>
 
   
@@ -82,25 +85,17 @@ export function ProductPagination({ products }) {
 </div>
 
 
-<div className="flex  mt-12 gap-1
+<div className="flex  mt-12 gap-1 justify-center
 ">
-<button
-disabled={currentPage === 1 ? true : false}
-onClick={() => paginate(currentPage - 1)}
-className="bg-tertiary hover:bg-pink-500 text-dark font-bold py-2 px-4 rounded"
-
->  
-
-Prev 
+  <div className="btn-group">
+  <button disabled={currentPage === 1 ? true : false}
+onClick={() => paginate(currentPage - 1)} className="btn bg-accent hover:bg-yellow-500 f font-mainfont text-bold text-3xl border-none">«</button>
+  <button className="btn btn-disabled text-dark bg-light  font-mainfont normal-case text-md">Page: {currentPage}
 </button>
+  <button disabled={currentPage === Math.ceil(products.length / productsPerPage) ? true : false}
+ onClick={() => paginate(currentPage + 1)}  className="btn  bg-secondary hover:bg-pink-500 font-mainfont text-bold text-3xl border-none ">»</button>
+</div>
 
-
-<button 
-disabled={currentPage === Math.ceil(products.length / productsPerPage) ? true : false}
- onClick={() => paginate(currentPage + 1)} 
-className="bg-secondary hover:bg-pink-500 text-light font-bold py-2 px-4 rounded">
-Next
-</button>
 </div>
        
 

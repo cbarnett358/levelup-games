@@ -70,12 +70,12 @@ hover:scale-105 transition duration-500 ease-in-out  hover:shadow-xl
 
 <h2 className="card-title font-mainfont text-2xl  font-bold text-secondary">  {limitProductTitle(product.product_name)}</h2>
 
-<div className="text-xs text-tertiary ">
+<div className="text-xs text-accent ">
 <ProductRating rating={product.product_rating} />
 </div>
-<h3 className="mb-2 font-mainfont text-lg font-bold" >
+<h3 className="mb-2 font-mainfont text-lg font-bold text-dark" >
 ${product.product_price}
-<div className=" ml-2 badge badge-secondary font-mainfont text-lg">Trade In: ${product.product_tradeval}</div>
+<div className=" ml-2 badge badge-secondary text-light font-mainfont text-lg">Trade In: ${product.product_tradeval}</div>
 </h3>
 
 

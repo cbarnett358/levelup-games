@@ -43,7 +43,7 @@ module.exports = {
       colors: { 
         primary: "var(--primary)",
         secondary: "var(--secondary)",
-        tertiary: "var(--tertiary)",
+        accent: "var(--accent)",
         dark: "var(--dark)",
         light: "var(--light)",
 
