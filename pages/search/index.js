@@ -38,12 +38,14 @@ export default function Search({ products }) {
 
     
     return (
-      <main className="min-h-screen">
+      <main className="min-h-screen bg-white ">
 
           <NavBar />
           <Hero />
           <TradeSteps />
-          <div className="mx-auto xl:container ">
+          <div className="mx-auto xl:container  px-8 sm:px-8 md-px-0
+          
+          ">
           <h2 className="text-4xl font-mainfont font-bold  text-secondary pt-10  ">Search Results</h2>
 
               <p className="text-xl  font-mainfont pb-2 -mt-2 text-dark">
@@ -65,7 +67,7 @@ hover:scale-105 transition duration-500 ease-in-out  hover:shadow-xl
 
 </figure>
 <div className="card-body p-4">      
-<div className="badge badge-outline font-mainfont font dark font-bold ">{product.product_platform}</div>
+<div className="badge badge-outline font-mainfont text-darks font-bold ">{product.product_platform}</div>
 
 
 <h2 className="card-title font-mainfont text-2xl  font-bold text-secondary">  {limitProductTitle(product.product_name)}</h2>

@@ -3,8 +3,7 @@ import { useEffect, useState, useRef, useMemo } from "react";
 import { ProductRating } from '..';
 import { NavBar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-
-
+import ImageUploader from "@/components/ImageUploader";
 
 
 //paginate the table to show 10 products per page
@@ -379,8 +378,10 @@ export default function Home() {
   return (
 <main className=" bg-light ">
     <NavBar></NavBar>
+  
+
     <div className="xl:container my-12 
-    mx-auto px-2 md:px-10 
+    mx-auto   px-8 sm:px-8 md-px-0
     bg-light" >      <h1 className="leading-none text-secondary font-mainfont text-6xl lg:text-5xl font-bold">Super Secret Admin Page</h1>
 
        
@@ -441,7 +442,7 @@ export default function Home() {
             
             
             </div> 
-  <div className="divider lg:divider-horizontal"></div> 
+  <div className="divider lg:divider-horizontal "></div> 
 
 
   <div className="grid flex-grow h-content py-6 card bg-white rounded-box place-items-center">  <div className="col">
@@ -480,7 +481,9 @@ border-none" onClick={addProduct}>Add Product</button
  <span>Product Created Successfully!</span>
 </div>
   </div>}
-            </div></div>
+                
+                
+ </div></div>
 
   <div className="divider lg:divider-horizontal"></div> 
 
@@ -499,8 +502,12 @@ border-none" onClick={addProduct}>Add Product</button
             </div></div>
 </div>
 
-            
-                <h3 className="mt-12">Products</h3>
+<div className="my-8">
+<h3>Add Images</h3>
+
+  <ImageUploader></ImageUploader>
+  </div>
+                <h3 className="">Products</h3>
                 <TablePagination products={products} />
 
          

@@ -7,7 +7,7 @@ export function Hero() {
     min-h-content
     pt-10
     pb-40
-    
+    px-8 sm:px-8 md-px-0
     
     bg-light">
  <div className="hero-content flex-col   

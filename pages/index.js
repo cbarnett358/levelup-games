@@ -85,10 +85,7 @@ export function ProductPagination({ products }) {
 
   return (
     <div
-    className="
-    xl:container  
-    mx-auto 
-    "
+   className="px-8 sm:px-8 md-px-0"
     >
       <div 
      className="
@@ -121,7 +118,7 @@ export function ProductPagination({ products }) {
         </div>
         {sortCategory && (
           <div className="dropdown">
-            <label htmlFor="sortDirection" className="mr-2">Sort direction:</label>
+            <label htmlFor="sortDirection" className="mr-2 font-mainfont text-dark">Sort direction:</label>
             <select
               id="sortDirection"
               value={sortDirection}
@@ -153,7 +150,7 @@ export function ProductPagination({ products }) {
       hover:scale-105 transition duration-500 ease-in-out  hover:shadow-xl 
       ">
   <figure>
-    <img src={"https://raw.githubusercontent.com/cbarnett358/levelUP-Images/main/levelup-game-covers/" + product.product_id + ".png"} alt="Game Cover" 
+    <img src={"https://res.cloudinary.com/dabmn9eje/image/upload/v1683582484/" + product.product_id + ".png"} alt="Game Cover" 
     
     />
     
@@ -279,11 +276,13 @@ export default function Home() {
 
 </Head>
 
-<main className="bg-white">
+<main className="bg-white ">
   <NavBar></NavBar>
 <Hero></Hero>
   <TradeSteps></TradeSteps>
-<section className="container  mx-20 ">
+<section className="container  xl:container  
+    mx-auto   
+    ">
  
 
 

@@ -4,6 +4,10 @@ module.exports = {
   "./components/**/*.{js,ts,jsx,tsx}",],
   theme: {
 
+    daisyui: {
+      base: false,
+    },
+
     fontSize: {
 
       xs: "0.75rem",
@@ -23,6 +27,7 @@ module.exports = {
 
       
     },
+    
 
     screenSizes: {
       'sm': '640px',

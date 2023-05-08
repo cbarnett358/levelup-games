@@ -82,9 +82,9 @@ export default function ProductPage() {
 
       <div className=" xl:container  
     mx-auto 
-    min-h-screen
+    min-h-screen 
     ">
-      <div className="  breadcrumbs mx-5 font-mainfont text-dark text-lg ">
+      <div className="  breadcrumbs mx-5 font-mainfont text-dark text-lg">
   <ul>
     <li>
      <Link href="/">
@@ -106,7 +106,7 @@ export default function ProductPage() {
 </div>
       <div className="hero  ">
         
-  <div className="hero-content flex-col lg:flex-row">
+  <div className="hero-content flex-col lg:flex-row px-8 sm:px-8 md-px-0">
     
     <img src={"https://raw.githubusercontent.com/cbarnett358/levelUP-Images/main/levelup-game-covers/" + product.product_id + ".png"} alt="Game Cover Art"
  className="max-w-sm rounded-lg shadow-2xl" />

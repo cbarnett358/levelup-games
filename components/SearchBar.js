@@ -21,7 +21,7 @@ export default function SearchBar() {
     <form 
 
     className='relative w-full
-    align-middle
+    align-middle 
     '
     onSubmit={handleSubmit}><div className="input-group   ">
        <input
@@ -29,7 +29,10 @@ export default function SearchBar() {
         type="text"
         name="search"
         id="search"
-        className="input bg-light border-none "
+        className="input bg-light border-none 
+     
+        "
+  
         placeholder="Search for products"
         value={searchTerm}
         onChange={(event) => setSearchTerm(event.target.value)}

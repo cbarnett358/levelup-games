@@ -6,11 +6,11 @@ function TradeSteps() {
 
     return (
          <section
-         className="bg-accent mx-auto py-6   xl:container
-         justify-center items-center -mt-28 rounded-lg shadow-lg  shadow-gray-300
+         className="bg-accent mx-auto py-6   xl:container  
+         justify-center items-center -mt-32 rounded-lg shadow-lg  shadow-gray-300 px-8 sm:px-8 md-px-0
          ">
             <div className="
-          flex flex-col md:flex-row justify-center items-center  px-4 py-6  md:space-x-12">
+          flex flex-col md:flex-row justify-center items-center py-6  md:space-x-12 ">
                <div className="mt-4  flex flex-col justify-center items-center  md:justify-start md:w-1/3 ">
                <i className="icon-48 mb-2 material-icons font-material text-dark 
                " >autorenew</i> 
