@@ -17,7 +17,7 @@ import { ProductRating } from '..'
 
 
 
-
+//Search results function
 export default function Search({ products }) {
     const router = useRouter()
     const { search } = router.query
@@ -43,17 +43,17 @@ export default function Search({ products }) {
           <NavBar />
           <Hero />
           <TradeSteps />
-          <div className="mx-auto xl:container">
+          <div className="mx-auto xl:container ">
           <h2 className="text-4xl font-mainfont font-bold  text-secondary pt-10  ">Search Results</h2>
 
               <p className="text-xl  font-mainfont pb-2 -mt-2 text-dark">
                 {searchResults.length} results for {search}
               </p>
               
-              <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 gap-8 ">
+              <div className="pt-2 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 gap-8 ">
               {searchResults.map((product) => (
  <div  key={product.product_id}>
- <Link href={`/${product.product_id}`} className="block max-w-sm rounded-lg  shadow-lg hover:shadow-xl transition-shadow duration-200 
+ <Link href={`/${product.product_id}`} className=" max-w-sm rounded-lg  shadow-lg hover:shadow-xl transition-shadow duration-200 
  ease-out">
 
 

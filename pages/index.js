@@ -20,16 +20,68 @@ export function limitProductTitle(productName) {
 }
 
 
-
-//pagination function
+// pagination function
 export function ProductPagination({ products }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage] = useState(8);
+  const [sortCategory, setSortCategory] = useState(""); // Track the selected sorting category
+  const [sortDirection, setSortDirection] = useState("asc"); // Track the sorting direction (asc or desc)
+
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  const handleSortChange = (event) => {
+    const selectedCategory = event.target.value;
+    setSortCategory(selectedCategory);
+  };
+
+  const handleSortDirectionChange = (event) => {
+    const selectedDirection = event.target.value;
+    setSortDirection(selectedDirection);
+  };
+
+  // Helper function to sort products based on category and direction
+  const sortProducts = (category, direction) => {
+    const sorted = [...products];
+
+    if (category === "") {
+      return sorted;
+    }
+
+    sorted.sort((a, b) => {
+      const valueA = a[category];
+      const valueB = b[category];
+
+      if (category === "product_platform") {
+        // Sort alphabetically for platform category
+        if (direction === "asc") {
+          return valueA.localeCompare(valueB);
+        } else {
+          return valueB.localeCompare(valueA);
+        }
+      } else {
+        // Sort numerically for other categories
+        if (direction === "asc") {
+          return valueA - valueB;
+        } else {
+          return valueB - valueA;
+        }
+      }
+    });
+
+    return sorted;
+  };
+
+  const resetSort = () => {
+    setSortCategory("");
+    setSortDirection("asc");
+  };
+
+  const sortedProducts = sortProducts(sortCategory, sortDirection);
+  const currentProducts = sortedProducts.slice(indexOfFirstProduct, indexOfLastProduct);
+
 
   return (
     <div
@@ -38,15 +90,61 @@ export function ProductPagination({ products }) {
     mx-auto 
     "
     >
-      <h2 className="text-4xl font-mainfont font-bold  text-secondary pt-10 pb-2">Shop Games</h2>
+      <div 
+     className="
+      flex flex-col
+      
+
+      
+     " 
+      >
+
+   
+
+
+      <h2 className="text-4xl font-mainfont font-bold  text-secondary pt-10 ">Shop Games</h2>   {/* Sort controls */}
+      <div className="flex justify-between items-center mb-4 pb-2">
+        <div className="dropdown">
+          <label htmlFor="sortCategory" className="mr-2 font-mainfont text-dark">Sort By:</label>
+          <select
+            id="sortCategory"
+            value={sortCategory}
+            onChange={handleSortChange}
+            className="dropdown-select bg-light rounded-md font-mainfont text-dark"
+          >
+            <option value="">None</option>
+            <option value="product_price">Price</option>
+            <option value="product_platform">Platform</option>
+            <option value="product_tradeval">Trade In</option>
+            <option value="product_rating">Rating</option>
+          </select>
+        </div>
+        {sortCategory && (
+          <div className="dropdown">
+            <label htmlFor="sortDirection" className="mr-2">Sort direction:</label>
+            <select
+              id="sortDirection"
+              value={sortDirection}
+              onChange={handleSortDirectionChange}
+              className="dropdown-select  bg-light  rounded-md font-mainfont text-dark Sort By:"
+            >
+              <option value="asc">Ascending</option>
+              <option value="desc">Descending</option>
+            </select>
+          </div>
+        )}
+        <button onClick={resetSort} className="btn btn-sm btn-error text-light font-mainfont
+        normal-case
+        ">Reset</button>
+      </div></div>
 
     <div  className='   grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 gap-8 
     
 '>
         
-              {currentProducts.map((product) => (
-                  <div  key={product.product_id}>
-                      <Link href={`/${product.product_id}`} className="block max-w-sm rounded-lg  shadow-lg hover:shadow-xl transition-shadow duration-200 
+               {currentProducts.map((product) => (
+          <div key={product.product_id}>
+                      <Link href={`/${product.product_id}`} className=" max-w-sm rounded-lg  shadow-lg hover:shadow-xl transition-shadow duration-200 
                       ease-out">
                  
 
@@ -104,9 +202,9 @@ onClick={() => paginate(currentPage - 1)} className="btn bg-accent hover:bg-yell
       
   );
 }
+//Paginnation function end
 
-
-
+// This function displays the rating of a product in the form of stars.
 export function ProductRating({ rating }) {
   const stars = [];
   for (let i = 1; i <= 5; i++) {
@@ -122,6 +220,8 @@ export function ProductRating({ rating }) {
   return <div>{stars}</div>;
 }
 
+
+// Getting the products from the database
 export default function Home() {
 
 

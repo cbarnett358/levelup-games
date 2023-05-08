@@ -470,7 +470,9 @@ export default function Home() {
 
 
                 </div>
-<               button className="btn btn-primary bg-secondary border-none" onClick={addProduct}>Add Product</button
+<               button className="btn btn-success font-mainfont text-dark text-lg
+normal-case
+border-none" onClick={addProduct}>Add Product</button
 >                {created && <div className="text-success">
   <div className="alert alert-success shadow-lg mt-4">
  

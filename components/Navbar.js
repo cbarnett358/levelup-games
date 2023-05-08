@@ -7,13 +7,7 @@ import SearchBar from './SearchBar';
 
 
 
-function cartItemsTotal (cart) {
-  let total = 0;
-  cart.map((product) => {
-      total += product.quantity;
-  })
-  return total;
-}
+
 
 //dynamically updates cart quantity in navbar when item is added to cart
 function cartTotal (cart) {
@@ -56,8 +50,8 @@ export function NavBar() {
       <div className="navbar py-4      xl:container  
  mx-auto      ">     
 
-    <div className="flex-1 ml-8 ">
-    <Link href="/"> 
+    <div className="flex-1 ">
+    <Link href="/" className='btn btn-ghost'> 
       
           
         <img src="/levelUP_Logo.png" alt="levelUP Games" width={180} height={50} />
@@ -65,7 +59,7 @@ export function NavBar() {
         </Link>
         
       </div>
-      <div className="flex-none gap-2 mr-8">
+      <div className="flex-none gap-2 ">
         
       <div className=" 
       
@@ -93,7 +87,7 @@ export function NavBar() {
       
         <div key={total} className="indicator  ">
         <Link href="/checkout"> <button className="icon-32 material-icons text-light "
-  >shopping_cart</button> </Link>
+  >shopping_bag</button> </Link>
 
           <span className="border-none shadow-lg badge badge-sm bg-secondary  text-light indicator-item ">{cartTotal (cart)}</span>
           
