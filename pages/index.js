@@ -118,15 +118,15 @@ export function ProductPagination({ products }) {
         </div>
         {sortCategory && (
           <div className="dropdown">
-            <label htmlFor="sortDirection" className="mr-2 font-mainfont text-dark">Sort direction:</label>
+            <label htmlFor="sortDirection" className="mr-2 font-mainfont text-dark">Direction:</label>
             <select
               id="sortDirection"
               value={sortDirection}
               onChange={handleSortDirectionChange}
               className="dropdown-select  bg-light  rounded-md font-mainfont text-dark Sort By:"
             >
-              <option value="asc">Ascending</option>
-              <option value="desc">Descending</option>
+              <option value="asc">Asc</option>
+              <option value="desc">Desc</option>
             </select>
           </div>
         )}
@@ -150,9 +150,12 @@ export function ProductPagination({ products }) {
       hover:scale-105 transition duration-500 ease-in-out  hover:shadow-xl 
       ">
   <figure>
-    <img src={"https://res.cloudinary.com/dabmn9eje/image/upload/v1683582484/" + product.product_id + ".png"} alt="Game Cover" 
-    
-    />
+  <img
+  src={product.product_id ? `https://res.cloudinary.com/dabmn9eje/image/upload/v1683582484/${product.product_id}.png` : "https://placehold.co/600x400"}
+  alt="Game Cover"
+  onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/600x600/6C30BF/FFFF/?text=Product Cover"; }}
+/>
+
     
     </figure>
   <div className="card-body p-4">      
@@ -222,10 +225,30 @@ export function ProductRating({ rating }) {
 export default function Home() {
 
 
-
-
+//updates the cart quantity
   const [products, setProducts] = useState([]);
+  const [quantity, setQuantity] = useState(0);
 
+  const handleQuantityChange = () => {
+    const cart = localStorage.getItem('cart');
+    if (cart) {
+      const cartList = JSON.parse(cart);
+      let quantityVal = 0;
+      cartList.forEach((product) => {
+        quantityVal += product.quantity;
+      });
+      setQuantity(quantityVal);
+    } else {
+      setQuantity(0);
+    }
+  };
+
+
+
+  useEffect(() => {
+    handleQuantityChange(); // Update the quantity whenever the cart changes
+  }, [products]);
+//end of cart quantity update
 
   async function getProducts() {
     const postData = {
@@ -277,7 +300,7 @@ export default function Home() {
 </Head>
 
 <main className="bg-white ">
-  <NavBar></NavBar>
+<NavBar quantity={quantity} />
 <Hero></Hero>
   <TradeSteps></TradeSteps>
 <section className="container  xl:container  

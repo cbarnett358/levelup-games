@@ -4,12 +4,12 @@ import { NavBar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import { ProductRating } from '..';
 import Link from 'next/link';
+import AddToCartBtn from '@/components/AddToCartBtn';
 
 export default function ProductPage() {
-  const [cart, setCart] = useState([]);
-  const [cartQuantity, setCartQuantity] = useState(0);
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [cartQuantity, setCartQuantity] = useState(0);
 
   const router = useRouter();
 
@@ -27,24 +27,43 @@ export default function ProductPage() {
   }, [router.query.id]);
 
   useEffect(() => {
-    const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
-    setCart(storedCart);
-    setCartQuantity(storedCart.reduce((total, item) => total + item.quantity, 0));
+    const cart = localStorage.getItem('cart');
+    if (cart) {
+      const cartList = JSON.parse(cart);
+      let quantity = 0;
+      cartList.forEach((item) => {
+        quantity += item.quantity;
+      });
+      setCartQuantity(quantity);
+    }
   }, []);
 
-  const updateCart = (updatedCart) => {
-    setCart(updatedCart);
-
-    const updatedCartQuantity = updatedCart.reduce((total, item) => total + item.quantity, 0);
-    setCartQuantity(updatedCartQuantity);
+  const handleQuantityChange = () => {
+    const cart = localStorage.getItem('cart');
+    if (cart) {
+      const cartList = JSON.parse(cart);
+      let quantity = 0;
+      cartList.forEach((item) => {
+        quantity += item.quantity;
+      });
+      setCartQuantity(quantity);
+    }
   };
 
   if (loading || !product) {
-    return <div>Loading...</div>;
+    return (
+      <div className='flex items-center justify-center h-screen bg-light text-dark font-mainfont'>
+        Loading...
+      </div>
+    );
   }
 
+  
+
   return (
-    <main className='bg-light'><NavBar cartQuantity={cartQuantity} />
+    <main className='bg-light'>           <NavBar quantity={cartQuantity} />
+
+
 
       <div className=" xl:container  
     mx-auto 
@@ -72,17 +91,17 @@ export default function ProductPage() {
       <div className="hero  ">
         
   <div className="hero-content flex-col lg:flex-row px-8 sm:px-8 md-px-0">
-    
-    <img src={"https://raw.githubusercontent.com/cbarnett358/levelUP-Images/main/levelup-game-covers/" + product.product_id + ".png"} alt="Game Cover Art"
- className="max-w-sm rounded-lg shadow-2xl" />
+  <img
+  src={product.product_id ? `https://res.cloudinary.com/dabmn9eje/image/upload/v1683582484/${product.product_id}.png` : "https://placehold.co/600x400"}
+  alt="Game Cover"
+  onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/600x600/6C30BF/FFFF/?text=Product Cover"; }}
+/>
     <div>
     <div className="badge badge-outline text-dark">{product.product_platform}</div>
-
       <h1 className="text-secondary text-5xl font-bold font-mainfont">{product.product_name}</h1>
       <div className="text-accent text-tertiary ">
       <ProductRating rating={product.product_rating} />
       </div>
-      
       <p className="font-mainfontpy-6 text-dark">{product.product_description}</p>
       <p className=''>
         ${product.product_price}
@@ -90,7 +109,8 @@ export default function ProductPage() {
       <p>
         ${product.product_tradeval}
       </p>
-  
+      <AddToCartBtn product={product} onQuantityChange={handleQuantityChange} />
+
     <div className="flex flex-row space-x-2">
   
 

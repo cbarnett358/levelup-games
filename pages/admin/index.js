@@ -188,7 +188,32 @@ export default function Home() {
   const [deleted, setDeleted] = useState(false);
   const [deletedError, setDeletedError] = useState(false);
 
+
+  //This gets the quantity of items in the cart
+  const [quantity, setQuantity] = useState(0);
+
+  const handleQuantityChange = () => {
+    const cart = localStorage.getItem('cart');
+    if (cart) {
+      const cartList = JSON.parse(cart);
+      let quantityVal = 0;
+      cartList.forEach((product) => {
+        quantityVal += product.quantity;
+      });
+      setQuantity(quantityVal);
+    } else {
+      setQuantity(0);
+    }
+  };
+
   
+  
+  useEffect(() => {
+    handleQuantityChange(); // Update the quantity whenever the cart changes
+  }, [products]);
+
+//End of cart quantity code
+
   //Add product
   async function addProduct() {
     const productName = productNameRef.current.value.trim();
@@ -377,7 +402,7 @@ export default function Home() {
 
   return (
 <main className=" bg-light ">
-    <NavBar></NavBar>
+<NavBar quantity={quantity} />
   
 
     <div className="xl:container my-12 

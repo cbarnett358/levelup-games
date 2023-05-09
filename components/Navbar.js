@@ -4,22 +4,14 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import SearchBar from './SearchBar';
+import { QuantityDisplay } from './AddToCartBtn';
 
 
 
 
 
-//dynamically updates cart quantity in navbar when item is added to cart
-function cartTotal (cart) {
-  let total = 0;
-  cart.map((product) => {
-      total += product.quantity;
-  })
-  return total;
-}
 
-
-export function NavBar() {
+export function NavBar({ quantity }) {
 
 
   
@@ -89,7 +81,11 @@ export function NavBar() {
         <Link href="/checkout"> <button className="icon-32 material-icons text-light "
   >shopping_bag</button> </Link>
 
-          <span className="border-none shadow-lg badge badge-sm bg-secondary  text-light indicator-item ">{cartTotal (cart)}</span>
+          <span className="border-none shadow-lg badge badge-sm bg-secondary  text-light indicator-item ">
+
+          <QuantityDisplay quantity={quantity} />
+
+          </span>
           
         </div>
     Cart </label>     
@@ -102,7 +98,7 @@ export function NavBar() {
         <Link href="/checkout"> <button className="icon-32 material-icons text-light "
   >autorenew</button> </Link>
 
-          <span className="border-none shadow-lg badge badge-sm bg-accent text-dark indicator-item ">{cartTotal (cart)}</span>
+          <span className="border-none shadow-lg badge badge-sm bg-accent text-dark indicator-item "></span>
           
         </div>
      Trade-In </label>

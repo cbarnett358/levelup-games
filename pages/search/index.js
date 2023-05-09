@@ -22,7 +22,32 @@ export default function Search({ products }) {
     const router = useRouter()
     const { search } = router.query
     const [searchResults, setSearchResults] = useState([])
-    
+      //This gets the quantity of items in the cart
+  const [quantity, setQuantity] = useState(0);
+
+  const handleQuantityChange = () => {
+    const cart = localStorage.getItem('cart');
+    if (cart) {
+      const cartList = JSON.parse(cart);
+      let quantityVal = 0;
+      cartList.forEach((product) => {
+        quantityVal += product.quantity;
+      });
+      setQuantity(quantityVal);
+    } else {
+      setQuantity(0);
+    }
+  };
+
+  
+ 
+
+  useEffect(() => {
+    handleQuantityChange(); // Update the quantity whenever the cart changes
+  }, [products]);
+
+//End of cart quantity code
+
     useEffect(() => {
         if (search) {
         const results = products.filter((product) =>
@@ -40,7 +65,8 @@ export default function Search({ products }) {
     return (
       <main className="min-h-screen bg-white ">
 
-          <NavBar />
+<NavBar quantity={quantity} />
+
           <Hero />
           <TradeSteps />
           <div className="mx-auto xl:container  px-8 sm:px-8 md-px-0
@@ -63,8 +89,11 @@ export default function Search({ products }) {
 hover:scale-105 transition duration-500 ease-in-out  hover:shadow-xl 
 ">
 <figure>
-<img src={"https://raw.githubusercontent.com/cbarnett358/levelUP-Images/main/levelup-game-covers/" + product.product_id + ".png"} alt="Shoes" />
-
+<img
+  src={product.product_id ? `https://res.cloudinary.com/dabmn9eje/image/upload/v1683582484/${product.product_id}.png` : "https://placehold.co/600x400"}
+  alt="Game Cover"
+  onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/600x600/6C30BF/FFFF/?text=Product Cover"; }}
+/>
 </figure>
 <div className="card-body p-4">      
 <div className="badge badge-outline font-mainfont text-darks font-bold ">{product.product_platform}</div>
@@ -108,7 +137,6 @@ export async function getServerSideProps() {
         },
     }
 }
-
 
 
 
