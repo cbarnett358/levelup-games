@@ -5,12 +5,12 @@ import { Footer } from '@/components/Footer';
 import { ProductRating } from '..';
 import Link from 'next/link';
 
-
-
 export default function ProductPage() {
+  const [cart, setCart] = useState([]);
+  const [cartQuantity, setCartQuantity] = useState(0);
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [cartQuantity, setCartQuantity] = useState(0); // New state for cart quantity
+
   const router = useRouter();
 
   useEffect(() => {
@@ -27,58 +27,24 @@ export default function ProductPage() {
   }, [router.query.id]);
 
   useEffect(() => {
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const productExists = cart.find((p) => p.product_id === product?.product_id);
+    const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
+    setCart(storedCart);
+    setCartQuantity(storedCart.reduce((total, item) => total + item.quantity, 0));
+  }, []);
 
-    if (productExists) {
-      setCartQuantity(productExists.quantity);
-    } else {
-      setCartQuantity(0);
-    }
-  }, [product]);
+  const updateCart = (updatedCart) => {
+    setCart(updatedCart);
 
-  const addToCart = (product) => {
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const productExists = cart.find((p) => p.product_id === product.product_id);
-
-    if (productExists) {
-      productExists.quantity++;
-      productExists.price++;
-    } else {
-      cart.push({ ...product, quantity: 1, price: product.product_price });
-    }
-
-    localStorage.setItem('cart', JSON.stringify(cart));
-    setCartQuantity(cart.reduce((total, p) => total + p.quantity, 0));
+    const updatedCartQuantity = updatedCart.reduce((total, item) => total + item.quantity, 0);
+    setCartQuantity(updatedCartQuantity);
   };
 
-  const tradeInCart = (product) => {
-    const tradecart = JSON.parse(localStorage.getItem('tradecart')) || [];
-    const productExists = tradecart.find((p) => p.product_id === product.product_id);
-
-    if (productExists) {
-      productExists.quantity++;
-      productExists.tradeval++;
-    } else {
-      tradecart.push({ ...product, quantity: 1, tradeval: product.product_tradeval });
-    }
-
-    localStorage.setItem('tradecart', JSON.stringify(tradecart));
-  };
-
-  if (loading) {
+  if (loading || !product) {
     return <div>Loading...</div>;
   }
 
-  if (!product) {
-    return <div>Loading...</div>;
-  }
   return (
-    <main
-    className='bg-light 
-    '
-    >
-      <NavBar></NavBar>            
+    <main className='bg-light'><NavBar cartQuantity={cartQuantity} />
 
       <div className=" xl:container  
     mx-auto 
@@ -101,7 +67,6 @@ export default function ProductPage() {
     </li> 
   
   </ul>
-  {cartQuantity}
   
 </div>
       <div className="hero  ">
@@ -125,22 +90,10 @@ export default function ProductPage() {
       <p>
         ${product.product_tradeval}
       </p>
-     
+  
     <div className="flex flex-row space-x-2">
-      <button
-        className="btn border-none bg-secondary btn-md font-bold font-mainfont  text-light text-lg"
-        onClick={() => addToCart(product)}
-      >
-        Add To Cart
-      </button>
-      <button
+  
 
-        className="btn border-none bg-accent btn-md font-bold font-mainfont text-dark  text-lg"
-        onClick={() => tradeInCart(product)}
-      >
-
-        Trade In
-      </button>
       </div>
     </div>
   </div>
