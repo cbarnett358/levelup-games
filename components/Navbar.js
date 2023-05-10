@@ -7,7 +7,7 @@ import { TradeQuantityDisplay } from './TradeInBtn';
 
 export function NavBar({ quantity, tradeQuantity }) {
   return (
-    <main className="bg-primary">
+    <main className="bg-primary drop-shadow-xl">
       <div className="navbar py-4 xl:container mx-auto">
         <div className="flex-1">
           <Link href="/" className="btn btn-ghost">
@@ -46,7 +46,7 @@ export function NavBar({ quantity, tradeQuantity }) {
             className="btn btn-ghost btn-circle hover:btn-border-none text-xs text-light font-mainfont normal-case"
           >
             <div className="indicator " >
-              <Link href="/checkout">
+              <Link href="/cart">
                 <button className="hover:animate-pulse
  icon-32 material-icons text-light">shopping_bag</button>
               </Link>
@@ -61,7 +61,7 @@ export function NavBar({ quantity, tradeQuantity }) {
             className="btn btn-ghost btn-circle hover:btn-border-none text-xs text-light font-mainfont normal-case"
           >
             <div className="indicator">
-              <Link href="/checkout">
+              <Link href="/cart">
                 <button className="hover:animate-pulse
  icon-32 material-icons text-light">autorenew</button>
               </Link>

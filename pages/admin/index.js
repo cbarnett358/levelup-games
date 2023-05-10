@@ -55,7 +55,7 @@ function TablePagination({ products }) {
 
   return (
     <div className="overflow-x-auto bg-light">
-      <table className="table table-zebra w-full bg-light ">
+      <table className="table w-full bg-light ">
         <thead className=" text-light  ">
           <tr>
             <th
@@ -68,7 +68,7 @@ function TablePagination({ products }) {
             </th>
             <th
               scope="col"
-              className="font-mainfont border text-lg bg-primary"
+              className="font-mainfont border border-light text-lg bg-primary"
               onClick={() => handleSortClick("product_name")}
             >
               Product Name {sortColumn === "product_name" && sortDirection === 1 && <>&#x25BC;</>}

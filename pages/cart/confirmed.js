@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 
 
-export default function Confirmation() {
+export default function Confirmed() {
 
     return (
     <main>
