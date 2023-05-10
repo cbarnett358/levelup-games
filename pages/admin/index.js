@@ -55,7 +55,7 @@ function TablePagination({ products }) {
 
   return (
     <div className="overflow-x-auto bg-light">
-      <table className="table table-zebra w-full ">
+      <table className="table table-zebra w-full bg-light ">
         <thead className=" text-light  ">
           <tr>
             <th
@@ -115,17 +115,17 @@ function TablePagination({ products }) {
             <tbody className="bg-light">
                 {currentProducts.map((product) => (
                     <tr key={product.product_id}>
-                           <td className="font-mainfont border text-lg">
+                           <td className="bg-white font-mainfont border text-dark text-lg">
                            
                             {product.product_id}</td>
-                                    <td className="font-mainfont border text-lg">{product.product_name}</td>
-                                    <td className="font-mainfont border text-lg">${product.product_price}</td>
-                                    <td className="font-mainfont border text-lg">${product.product_tradeval}</td>
-                                    <td className="font-mainfont border text-lg">{product.product_platform}</td>
-                                    <td className="text-base border text-accent ">
+                                    <td className="bg-white  font-mainfont border text-dark  text-lg">{product.product_name}</td>
+                                    <td className="bg-white  font-mainfont border text-dark  text-lg">${product.product_price}</td>
+                                    <td className="bg-white t font-mainfont border text-dark  text-lg">${product.product_tradeval}</td>
+                                    <td className="bg-white  font-mainfont border text-dark  text-lg">{product.product_platform}</td>
+                                    <td className="bg-white  text-base border  text-accent ">
       <ProductRating rating={product.product_rating} />
       </td>
-      <td className="border font-mainfont text-lg">{product.product_description}</td>
+      <td className="bg-white border font-mainfont text-lg text-dark ">{product.product_description}</td>
                     </tr>
                 ))}
             </tbody>
@@ -440,7 +440,7 @@ export default function Home() {
 
     <div className="xl:container my-12 
     mx-auto   px-8 sm:px-8 md-px-0
-    bg-light" >      <h1 className="leading-none text-secondary font-mainfont text-6xl lg:text-5xl font-bold">Super Secret Admin Page</h1>
+    bg-light" >      <h1 className="leading-none text-secondary font-mainfont text-4xl lg:text-5xl font-bold">Super Secret Admin Page</h1>
 
        
     <div className="flex flex-col w-full lg:flex-row mt-6">

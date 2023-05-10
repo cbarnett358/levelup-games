@@ -118,7 +118,7 @@ export function ProductPagination({ products }) {
         </div>
         {sortCategory && (
           <div className="dropdown">
-            <label htmlFor="sortDirection" className="mr-2 font-mainfont text-dark">Direction:</label>
+            <label htmlFor="sortDirection" className="mr-2 font-mainfont text-dark">Order:</label>
             <select
               id="sortDirection"
               value={sortDirection}
@@ -188,11 +188,11 @@ export function ProductPagination({ products }) {
 ">
   <div className="btn-group">
   <button disabled={currentPage === 1 ? true : false}
-onClick={() => paginate(currentPage - 1)} className="btn bg-accent hover:bg-yellow-500 f font-mainfont text-bold text-3xl border-none">«</button>
+onClick={() => paginate(currentPage - 1)} className="btn bg-accent hover:bg-yellow-500 text-dark font-mainfont text-bold text-3xl border-none">«</button>
   <button className="btn btn-disabled text-dark bg-light  font-mainfont normal-case text-md">Page: {currentPage}
 </button>
   <button disabled={currentPage === Math.ceil(products.length / productsPerPage) ? true : false}
- onClick={() => paginate(currentPage + 1)}  className="btn  bg-secondary hover:bg-pink-500 font-mainfont text-bold text-3xl border-none ">»</button>
+ onClick={() => paginate(currentPage + 1)}  className="btn  bg-secondary hover:bg-pink-500 font-mainfont text-bold text-light text-3xl border-none ">»</button>
 </div>
 
 </div>

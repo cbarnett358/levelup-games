@@ -132,7 +132,7 @@ hover:scale-105 transition duration-500 ease-in-out  hover:shadow-xl
 />
 </figure>
 <div className="card-body p-4">      
-<div className="badge badge-outline font-mainfont text-darks font-bold ">{product.product_platform}</div>
+<div className="badge badge-outline font-mainfont text-dark font-bold ">{product.product_platform}</div>
 
 
 <h2 className="card-title font-mainfont text-2xl  font-bold text-secondary">  {limitProductTitle(product.product_name)}</h2>

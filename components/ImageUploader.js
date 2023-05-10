@@ -52,7 +52,7 @@ const ImageUploader = () => {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <div className="form-control w-full max-w-xs">
+        <div className="form-control w-full max-w-xs ">
           <label className="label">
             <span className="label-text">Pick a PNG file</span>
             <span className="label-text-alt">Name Should Be id.png</span>
@@ -61,7 +61,8 @@ const ImageUploader = () => {
             type="file"
             accept=".png"
             onChange={handleImageUpload}
-            className="file-input file-input-bordered w-full max-w-xs"
+            className="file-input file-input-bg-primary file-input-bordered w-full max-w-xs bg-white"
+            
             ref={fileInputRef}
           />
           {uploadedImageUrl && (

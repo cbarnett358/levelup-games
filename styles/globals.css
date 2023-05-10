@@ -7,6 +7,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 :root {
   --max-width: 1100px;
   --border-radius: 12px;
@@ -23,6 +24,7 @@
   --accent: #F2D027;
   --dark: #11001C;
   --light: #e9e9f8;
+  
 
 }
 
