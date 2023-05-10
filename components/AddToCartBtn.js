@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
 export function QuantityDisplay({ quantity }) {
-  return <span>{quantity}</span>;
+  const displayQuantity = isNaN(quantity) ? 0 : quantity;
+  return <span>{displayQuantity}</span>;
 }
+
 
 export default function AddToCartBtn({ product, onQuantityChange }) {
   const [cart, setCart] = useState([]);

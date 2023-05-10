@@ -227,28 +227,58 @@ export default function Home() {
 
 //updates the cart quantity
   const [products, setProducts] = useState([]);
-  const [quantity, setQuantity] = useState(0);
+  const [cartQuantity, setCartQuantity] = useState(0);
+  const [tradeInQuantity, setTradeInQuantity] = useState(0);  
+  //Cart and TradeIn Cart Quantity
+  useEffect(() => {
+    const cart = localStorage.getItem('cart');
+    if (cart) {
+      const cartList = JSON.parse(cart);
+      let quantity = 0;
+      cartList.forEach((item) => {
+        quantity += item.quantity;
+      });
+      setCartQuantity(quantity);
+    }
+  }, []);
 
   const handleQuantityChange = () => {
     const cart = localStorage.getItem('cart');
     if (cart) {
       const cartList = JSON.parse(cart);
-      let quantityVal = 0;
-      cartList.forEach((product) => {
-        quantityVal += product.quantity;
+      let quantity = 0;
+      cartList.forEach((item) => {
+        quantity += item.quantity;
       });
-      setQuantity(quantityVal);
-    } else {
-      setQuantity(0);
+      setCartQuantity(quantity);
     }
   };
 
-
-
   useEffect(() => {
-    handleQuantityChange(); // Update the quantity whenever the cart changes
-  }, [products]);
-//end of cart quantity update
+    const tradeInCart = localStorage.getItem('tradeInCart');
+    if (tradeInCart) {
+      const tradeInCartList = JSON.parse(tradeInCart);
+      let quantity = 0;
+      tradeInCartList.forEach((item) => {
+        quantity += item.trade_quantity;
+      });
+      setTradeInQuantity(quantity);
+    }
+  }, []);
+
+  const handleTradeInQuantityChange = () => {
+    const tradeInCart = localStorage.getItem('tradeInCart');
+    if (tradeInCart) {
+      const tradeInCartList = JSON.parse(tradeInCart);
+      let quantity = 0;
+      tradeInCartList.forEach((item) => {
+        quantity += item.trade_quantity;
+      });
+      setTradeInQuantity(quantity);
+    }
+  };
+
+//End of Cart and TradeIn Cart Quantity
 
   async function getProducts() {
     const postData = {
@@ -300,7 +330,7 @@ export default function Home() {
 </Head>
 
 <main className="bg-white ">
-<NavBar quantity={quantity} />
+<NavBar quantity={cartQuantity} tradeQuantity={tradeInQuantity} />
 <Hero></Hero>
   <TradeSteps></TradeSteps>
 <section className="container  xl:container  

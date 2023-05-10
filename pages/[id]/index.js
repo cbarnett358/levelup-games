@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { use, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { NavBar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import { ProductRating } from '..';
 import Link from 'next/link';
 import AddToCartBtn from '@/components/AddToCartBtn';
-
+import TradeInCartButton from '@/components/TradeInBtn';
 export default function ProductPage() {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [cartQuantity, setCartQuantity] = useState(0);
+  const [tradeInQuantity, setTradeInQuantity] = useState(0);
 
   const router = useRouter();
 
@@ -50,6 +51,31 @@ export default function ProductPage() {
     }
   };
 
+  useEffect(() => {
+    const tradeInCart = localStorage.getItem('tradeInCart');
+    if (tradeInCart) {
+      const tradeInCartList = JSON.parse(tradeInCart);
+      let quantity = 0;
+      tradeInCartList.forEach((item) => {
+        quantity += item.trade_quantity;
+      });
+      setTradeInQuantity(quantity);
+    }
+  }, []);
+
+  const handleTradeInQuantityChange = () => {
+    const tradeInCart = localStorage.getItem('tradeInCart');
+    if (tradeInCart) {
+      const tradeInCartList = JSON.parse(tradeInCart);
+      let quantity = 0;
+      tradeInCartList.forEach((item) => {
+        quantity += item.trade_quantity;
+      });
+      setTradeInQuantity(quantity);
+    }
+  };
+
+
   if (loading || !product) {
     return (
       <div className='flex items-center justify-center h-screen bg-light text-dark font-mainfont'>
@@ -61,7 +87,9 @@ export default function ProductPage() {
   
 
   return (
-    <main className='bg-light'>           <NavBar quantity={cartQuantity} />
+    <main className='bg-light'>                   <NavBar quantity={cartQuantity} tradeQuantity={tradeInQuantity} />
+
+
 
 
 
@@ -109,7 +137,10 @@ export default function ProductPage() {
       <p>
         ${product.product_tradeval}
       </p>
-      <AddToCartBtn product={product} onQuantityChange={handleQuantityChange} />
+      <TradeInCartButton
+        product={product}
+        onQuantityChange={handleTradeInQuantityChange} // Pass the correct function here
+      />   <AddToCartBtn product={product} onQuantityChange={handleQuantityChange} />
 
     <div className="flex flex-row space-x-2">
   

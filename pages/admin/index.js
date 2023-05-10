@@ -182,6 +182,8 @@ export default function Home() {
 
   const productNameToUpdateRef = useRef();
   const [products, setProducts] = useState([]);
+  const [tradeInQuantity, setTradeInQuantity] = useState(0);
+
   const [updated, setUpdated] = useState(false);
   const [updatedError, setUpdatedError] = useState(false);
   const [created, setCreated] = useState(false);
@@ -191,27 +193,58 @@ export default function Home() {
 
   //This gets the quantity of items in the cart
   const [quantity, setQuantity] = useState(0);
-
-  const handleQuantityChange = () => {
-    const cart = localStorage.getItem('cart');
-    if (cart) {
-      const cartList = JSON.parse(cart);
-      let quantityVal = 0;
-      cartList.forEach((product) => {
-        quantityVal += product.quantity;
-      });
-      setQuantity(quantityVal);
-    } else {
-      setQuantity(0);
-    }
-  };
-
+  const [cartQuantity, setCartQuantity] = useState(0);
+    //Cart and TradeIn Cart Quantity
+    useEffect(() => {
+      const cart = localStorage.getItem('cart');
+      if (cart) {
+        const cartList = JSON.parse(cart);
+        let quantity = 0;
+        cartList.forEach((item) => {
+          quantity += item.quantity;
+        });
+        setCartQuantity(quantity);
+      }
+    }, []);
   
+    const handleQuantityChange = () => {
+      const cart = localStorage.getItem('cart');
+      if (cart) {
+        const cartList = JSON.parse(cart);
+        let quantity = 0;
+        cartList.forEach((item) => {
+          quantity += item.quantity;
+        });
+        setCartQuantity(quantity);
+      }
+    };
   
-  useEffect(() => {
-    handleQuantityChange(); // Update the quantity whenever the cart changes
-  }, [products]);
-
+    useEffect(() => {
+      const tradeInCart = localStorage.getItem('tradeInCart');
+      if (tradeInCart) {
+        const tradeInCartList = JSON.parse(tradeInCart);
+        let quantity = 0;
+        tradeInCartList.forEach((item) => {
+          quantity += item.trade_quantity;
+        });
+        setTradeInQuantity(quantity);
+      }
+    }, []);
+  
+    const handleTradeInQuantityChange = () => {
+      const tradeInCart = localStorage.getItem('tradeInCart');
+      if (tradeInCart) {
+        const tradeInCartList = JSON.parse(tradeInCart);
+        let quantity = 0;
+        tradeInCartList.forEach((item) => {
+          quantity += item.trade_quantity;
+        });
+        setTradeInQuantity(quantity);
+      }
+    };
+  
+  //End of Cart and TradeIn Cart Quantity
+  
 //End of cart quantity code
 
   //Add product
@@ -402,7 +435,7 @@ export default function Home() {
 
   return (
 <main className=" bg-light ">
-<NavBar quantity={quantity} />
+<NavBar quantity={cartQuantity} tradeQuantity={tradeInQuantity} />
   
 
     <div className="xl:container my-12 
