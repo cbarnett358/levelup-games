@@ -66,14 +66,21 @@ export default function Cart() {
     };
 
     const handleDeleteCartItem = (productId) => {
-        const updatedItems = cartItems.filter((product) => product.product_id !== productId);
-        setCartItems(updatedItems);
-      };
+      const updatedItems = cartItems.filter(
+        (product) => product.product_id !== productId
+      );
+      setCartItems(updatedItems);
+      localStorage.setItem("cart", JSON.stringify(updatedItems));
+    };
     
-      const handleDeleteTradeInCartItem = (productId) => {
-        const updatedItems = tradeInCartItems.filter((product) => product.product_id !== productId);
-        setTradeInCartItems(updatedItems);
-      };
+    const handleDeleteTradeInCartItem = (productId) => {
+      const updatedItems = tradeInCartItems.filter(
+        (product) => product.product_id !== productId
+      );
+      setTradeInCartItems(updatedItems);
+      localStorage.setItem("tradeInCart", JSON.stringify(updatedItems));
+    };
+    
   return (
     
     <main className="bg-white">
@@ -102,22 +109,30 @@ export default function Cart() {
 
             <h2 className="font-mainfont font-bold text-dark mx-2 text-3xl">                    <span className="material-icons">shopping_bag</span>
 Purchases:</h2>
+{cartItems.length === 0 ? (
+ <div>
+                <p className="font-mainfont text-xl text-dark mx-2">
+                  The cart is empty &nbsp;   
+              <Link href="/" className="underline text-secondary">
+continue shopping.
+                </Link></p></div>
+              ) : (
 
-              <table className="table w-full">
-                <thead>
-                  <tr>
-                    <th></th>
-                    <th>Product Name</th>
-                    <th>Product Price</th>
-                    <th>Product Quantity</th>
-                    <th>Product Subtotal</th>
-                    <th></th>
+              <table className="table w-full "> 
+                <thead >
+                  <tr >
+                    <th className="border text-lg bg-secondary text-light font-mainfont text-bold">Bag</th>
+                    <th className="border text-lg bg-secondary text-light font-mainfont text-bold">Product Name</th>
+                    <th className="border text-lg bg-secondary text-light font-mainfont text-bold">Product Price</th>
+                    <th className="border text-lg bg-secondary text-light font-mainfont text-bold">Product Quantity</th>
+                    <th className="border text-lg bg-secondary text-light font-mainfont text-bold">Product Subtotal</th>
+                    <th className="border text-lg bg-secondary text-light font-mainfont text-bold ">Remove</th>
                   </tr>
                 </thead>
                 <tbody>
                   {cartItems.map((product) => (
                     <tr key={product.product_id}>
-                      <td>
+                      <td className="border bg-white font-mainfont">
                         <div className="avatar">
                           <div className="mb-8 rounded-btn w-24 h-24">
                             <img
@@ -136,9 +151,9 @@ Purchases:</h2>
                           </div>
                         </div>
                       </td>
-                      <td>{product.product_name}</td>
-                      <td>${product.product_price}</td>
-                      <td>
+                      <td className="bg-white border font-mainfont">{product.product_name}</td>
+                      <td className="bg-white border font-mainfont">${product.product_price}</td>
+                      <td className="bg-white border font-mainfont">
                         <input
                         className="w-12 h-10 bg-light text-dark rounded-box 
                         text-center
@@ -154,8 +169,8 @@ Purchases:</h2>
                           }
                         />
                       </td>
-                      <td>${product.product_price * product.quantity}</td>
-                    <td>  <button
+                      <td className="bg-white border  font-mainfont"> ${product.product_price * product.quantity}</td>
+                    <td className="bg-white border  font-mainfont ">  <button
                     className="btn btn-circle btn-sm btn-error material-icons text-light 
                     
                     "
@@ -166,11 +181,11 @@ Purchases:</h2>
                    
                   ))}
                 </tbody>
-              </table>
+              </table>     )}
             </div>
 
 
-            <h2 className="font-mainfont font-bold text-dark mx-2 text-3xl">
+            <h2 className="font-mainfont font-bold text-dark mx-2 text-3xl mt-6">
               
                     <span className="material-icons">autorenew</span>
              
@@ -178,21 +193,30 @@ Purchases:</h2>
 
          
             <div class="overflow-x-auto">
+            {tradeInCartItems.length === 0 ? (
+                <div>
+                <p className="font-mainfont text-xl text-dark mx-2">
+                  You have nothing to trade in &nbsp;   
+              <Link href="/" className="underline text-secondary">
+browse for trades.
+                </Link></p></div>
+              ) : (
+
               <table class="table w-full">
                 <thead>
                   <tr>
-                    <th>Shopping Bag</th>
-                    <th>Product Name</th>
-                    <th>Product Trade Price</th>
-                    <th>Product Quantity</th>
-                    <th>Product Subtotal</th>
-                    <th></th>
+                    <th className="border text-lg bg-accent text-dark font-mainfont text-bold">Trades</th>
+                    <th className="border text-lg bg-accent text-dark font-mainfont text-bold">Product Name</th>
+                    <th className="border text-lg bg-accent text-dark font-mainfont text-bold">Product Trade Price</th>
+                    <th className="border text-lg bg-accent text-dark font-mainfont text-bold">Product Quantity</th>
+                    <th className="border text-lg bg-accent text-dark font-mainfont text-bold">Product Subtotal</th>
+                    <th className="border text-lg bg-accent text-dark font-mainfont text-bold">Remove</th>
                   </tr>
                 </thead>
                 <tbody>
             {tradeInCartItems.map((product) => (
                <tr key={product.product_id}>
-               <th>
+               <td className="bg-white border font-mainfont">
                  <div class="avatar">
                    <div class="mb-8 rounded-btn w-24 h-24">
                      <img
@@ -210,10 +234,10 @@ Purchases:</h2>
                      />
                    </div>
                  </div>
-               </th>
-               <td>{product.product_name}</td>
-               <td>${product.product_tradeval}</td>
-               <td>
+               </td>
+               <td className="bg-white border font-mainfont">{product.product_name}</td>
+               <td className="bg-white border font-mainfont">${product.product_tradeval}</td>
+               <td className="bg-white border font-mainfont">
 
                 <input
                 className="w-12 h-10 bg-light text-dark rounded-box
@@ -232,8 +256,8 @@ Purchases:</h2>
                 
                </td>
                 
-               <td>${product.product_tradeval * product.trade_quantity}</td>
-               <td>
+               <td className="bg-white border font-mainfont">${product.product_tradeval * product.trade_quantity}</td>
+               <td className="bg-white border font-mainfont">
                <button
                                        className="btn btn-circle btn-sm btn-error material-icons text-light "
 
@@ -245,7 +269,7 @@ Purchases:</h2>
              </tr>
            ))}
          </tbody>
-       </table>
+       </table>      )}
      </div>
    </div>
    <div className="divider lg:divider-horizontal px-4"></div>
@@ -257,7 +281,7 @@ Purchases:</h2>
      <h2 className="mt-3 font-mainfont text-2xl font-bold text-dark">Total: ${finalTotal(cartItems, tradeInCartItems)}</h2>
      
 
-     <Link href="/cart/payment"> <button className="mt-6 btn btn-secondary font mainfont text-md">Proceed To Payment</button></Link>
+     <Link href="/cart/payment"> <button className="mt-6 btn btn-secondary font mainfont text-md mb-2">Proceed To Payment</button></Link>
    </div>
 
 

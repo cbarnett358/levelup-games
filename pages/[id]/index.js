@@ -27,6 +27,8 @@ export default function ProductPage() {
     getProduct();
   }, [router.query.id]);
 
+
+  //Cart and TradeIn Cart Quantity
   useEffect(() => {
     const cart = localStorage.getItem('cart');
     if (cart) {
@@ -75,7 +77,7 @@ export default function ProductPage() {
     }
   };
 
-
+//End of Cart and TradeIn Cart Quantity
   if (loading || !product) {
     return (
       <div className='flex items-center justify-center h-screen bg-light text-dark font-mainfont'>
@@ -97,7 +99,7 @@ export default function ProductPage() {
     mx-auto 
     min-h-screen 
     ">
-      <div className="  breadcrumbs mx-5 font-mainfont text-dark text-lg">
+      <div className="  breadcrumbs  font-mainfont text-dark  text-md md:text-lg lg:flex-row px-8 sm:px-8 md-px-0">
   <ul>
     <li>
      <Link href="/">
@@ -125,27 +127,31 @@ export default function ProductPage() {
   onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/600x600/6C30BF/FFFF/?text=Product Cover"; }}
 />
     <div>
-    <div className="badge badge-outline text-dark">{product.product_platform}</div>
-      <h1 className="text-secondary text-5xl font-bold font-mainfont">{product.product_name}</h1>
+      <div className='pb-2'>
+    <div className="badge badge-outline text-dark font-mainfont font-bold">{product.product_platform}</div>
+      <h1 className="text-secondary text-5xl font-bold font-mainfont
+      leading-none py-2
+      ">{product.product_name}</h1>
       <div className="text-accent text-tertiary ">
       <ProductRating rating={product.product_rating} />
       </div>
-      <p className="font-mainfontpy-6 text-dark">{product.product_description}</p>
-      <p className=''>
-        ${product.product_price}
+      </div>
+      <p className="font-mainfont  pt-2 text-dark md:text-xl  text-lg font-mainfontk">{product.product_description}</p>
+      <div className=' py-4'>
+      <p className='font-mainfont text-dark font-bold text-xl pb-2'>
+        Trade In: ${product.product_price}
       </p>
-      <p>
-        ${product.product_tradeval}
+      <p className='font-mainfont text-dark font-bold text-xl'>
+      Purchase: ${product.product_tradeval}
       </p>
+      </div>
+      <div className='flex flex-row space-x-2 py-2'>
       <TradeInCartButton
         product={product}
         onQuantityChange={handleTradeInQuantityChange} // Pass the correct function here
       />   <AddToCartBtn product={product} onQuantityChange={handleQuantityChange} />
-
-    <div className="flex flex-row space-x-2">
-  
-
-      </div>
+</div>
+   
     </div>
   </div>
 </div></div>

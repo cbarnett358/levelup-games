@@ -46,9 +46,8 @@ export default function TradeInCartButton({ product, onQuantityChange }) {
       <button onClick={addToTradeInCart} className="hover:animate-pulse font-mainfont bg-accent hover:bg-accent-500
       text-dark font-bold border-none
  btn ">
-        Add to Trade-In Cart
+        Trade In
       </button>
-      <TradeQuantityDisplay quantity={tradeQuantity} />
     </div>
   );
 }

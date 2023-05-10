@@ -58,7 +58,7 @@ export default function AddToCartBtn({ product, onQuantityChange }) {
 ">
         Add to Cart
       </button>
-      <QuantityDisplay quantity={quantity} />
+   
     </div>
   );
 }
