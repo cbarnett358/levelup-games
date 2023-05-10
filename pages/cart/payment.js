@@ -38,9 +38,10 @@ export default function Payment() {
   };
 
     return (
-        <main className="bg-white">
-          <div className="text-sm breadcrumbs bg-primary container">
-            <ul className="drop-shadow-xl xl:container mx-auto px-8 sm:px-8 md-px-0 text-light font-mainfont">
+        <main className="bg-white ">
+        
+          <div className="text-sm breadcrumbs bg-primary container ">
+            <ul className="drop-shadow-xl xl:container mx-auto px-8 sm:px-8 md-px-0 text-light font-mainfont ">
               <li>
                 <Link href="/">
                   <span className="material-icons">home</span>
@@ -61,6 +62,7 @@ export default function Payment() {
                 </li>
             </ul>
           </div>
+          <div className=" mx-auto px-8 sm:px-8 md-px-0">
           <section className="xl:container mx-auto mt-10 px-8 sm:px-8 md-px-0 bg-white rounded-box border border-light
           ">
      
@@ -176,12 +178,17 @@ export default function Payment() {
     </div></div>
     <Link href="../cart/confirmed">
       <div className="form-control my-6">
-        <button className="btn btn-primary bg-secondary border-none font-mainfont text-light text-xl">Confirm Purchase</button>
+        <button className=" btn bg-secondary border-none text-light
+    hover:bg-pink-500 drop-shadow-lg
+    transition duration-500 ease-in-out transform font-mainfont  hover:scale-105 hover:animate-pulse
+     font mainfont font-bold text-lg
+">Confirm Purchase</button>
       </div>
     </Link>
   </form>
 
 </section>
+</div>
 </main>
     )
 }

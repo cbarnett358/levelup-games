@@ -131,13 +131,16 @@ function TablePagination({ products }) {
             </tbody>
             <tfoot>
                 <tr>
-                    <td colSpan="">
+                    <td colSpan="" className="bg-white">
                         <div className="flex
                       gap-2
                         ">
                             <button
                                 onClick={() => paginate(currentPage - 1)}
-                                className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l"
+                                className=" btn bg-accent border-none text-dark
+    hover:bg-yellow-400 drop-shadow-lg
+    transition duration-500 ease-in-out transform font-mainfont  hover:scale-105
+     font mainfont font-bold text-md"
                                 disabled={currentPage === 1}
                             >
                                 Previous
@@ -145,7 +148,10 @@ function TablePagination({ products }) {
                             <button
 
                                 onClick={() => paginate(currentPage + 1)}
-                                className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r"
+                                className=" btn bg-secondary border-none text-light
+                                hover:bg-pink-500 drop-shadow-lg
+                                transition duration-500 ease-in-out transform font-mainfont  hover:scale-105
+                                 font mainfont font-bold text-md"
                                 disabled={currentPage === Math.ceil(products.length / productsPerPage)}
                             >
                                 Next
@@ -481,8 +487,13 @@ export default function Home() {
                 
 
 
-                <button className="btn btn-primary bg-secondary  
-                border-none
+                <button className=" btn bg-secondary border-none text-light
+    hover:bg-pink-500 drop-shadow-lg
+    transition duration-500 ease-in-out transform font-mainfont  hover:scale-105
+     font mainfont font-bold md:text-lg hover:animate-pulse
+     text-md
+     
+
                 " onClick={updateProduct}>Update Product</button>
              
                 {updated && <div className="text-success mt-4 
@@ -529,9 +540,11 @@ export default function Home() {
 
 
                 </div>
-<               button className="btn btn-success font-mainfont text-dark text-lg
-normal-case
-border-none" onClick={addProduct}>Add Product</button
+<               button className="btn bg-green-600 border-none text-light
+    hover:bg-green-700 drop-shadow-lg
+    transition duration-500 ease-in-out transform font-mainfont  hover:scale-105
+     font mainfont font-bold md:text-lg hover:animate-pulse
+     text-md" onClick={addProduct}>Add Product</button
 >                {created && <div className="text-success">
   <div className="alert alert-success shadow-lg mt-4">
  
@@ -554,7 +567,13 @@ border-none" onClick={addProduct}>Add Product</button
                     
                 </div>
                 
-                <button className="btn btn-primary bg-red-500 border-none" onClick={() => deleteProduct(productIDToDeleteRef.current.value)}>Delete Product</button>
+                <button className="btn bg-red-500 border-none text-light
+    hover:bg-red-600 drop-shadow-lg
+    transition duration-500 ease-in-out transform font-mainfont  hover:scale-105
+     font mainfont font-bold md:text-lg hover:animate-pulse
+     text-md" 
+                
+                onClick={() => deleteProduct(productIDToDeleteRef.current.value)}>Delete Product</button>
                 {deleted && <p className="text-success">Product deleted successfully</p>}
                 {deletedError && <p className="text-danger">Product delete failed</p>}
             </div></div>

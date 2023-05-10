@@ -145,7 +145,7 @@ export default function ProductPage() {
       Purchase: ${product.product_tradeval}
       </p>
       </div>
-      <div className='flex flex-row space-x-2 py-2'>
+      <div className='flex flex-row space-x-3 py-2'>
       <TradeInCartButton
         product={product}
         onQuantityChange={handleTradeInQuantityChange} // Pass the correct function here

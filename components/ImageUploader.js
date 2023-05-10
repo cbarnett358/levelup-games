@@ -72,15 +72,23 @@ const ImageUploader = () => {
               </Image>
             </CloudinaryContext>
           )}
-          <label className="label">
-            <span className="label-text-alt">Alt label</span>
-            <span className="label-text-alt">Alt label</span>
-          </label>
-          <div className="flex justify-between">
-            <button type="submit" className="btn btn-primary">
+       
+          <div className="flex justify-between mt-4">
+            <button type="submit" className="btn bg-secondary border-none text-light
+    hover:bg-pink-500 drop-shadow-lg
+    transition duration-500 ease-in-out transform font-mainfont  hover:scale-105
+     font mainfont font-bold md:text-lg
+     hover:animate-pulse
+     text-md">
               Submit
             </button>
-            <button type="button" className="btn btn-secondary" onClick={handleReset}>
+            <button type="button" className="btn bg-accent border-none text-dark
+    hover:bg-yellow-400 drop-shadow-lg
+    transition duration-500 ease-in-out transform font-mainfont  hover:scale-105
+     font mainfont font-bold md:text-lg
+     hover:animate-pulse
+     text-md
+     " onClick={handleReset}>
               Reset
             </button>
           </div>

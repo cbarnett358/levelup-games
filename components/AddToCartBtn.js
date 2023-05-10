@@ -53,8 +53,11 @@ export default function AddToCartBtn({ product, onQuantityChange }) {
 
   return (
     <div>
-      <button onClick={() => addToCart(product)} className="btn btn-secondary hover:animate-pulse font-mainfont bg-secondary hover:bg-secondary-500
-      text-light font-bold border-none
+      <button onClick={() => addToCart(product)} className="btn bg-secondary border-none text-light
+    hover:bg-pink-500 drop-shadow-lg
+    transition duration-500 ease-in-out transform font-mainfont  hover:scale-105
+     font mainfont font-bold text-md md:text-lg hover:animate-pulse
+
 ">
         Add to Cart
       </button>

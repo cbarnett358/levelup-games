@@ -84,7 +84,7 @@ export default function Cart() {
   return (
     
     <main className="bg-white">
-        <div class="text-sm breadcrumbs bg-primary container  drop-shadow-xl">
+        <div className="text-sm breadcrumbs bg-primary container  drop-shadow-xl">
   <ul className=" xl:container  mx-auto px-8 sm:px-8 md-px-0 text-light font-mainfont ">
   <li>
               <Link href="/">
@@ -192,7 +192,7 @@ continue shopping.
                Trade Bag</h2>
 
          
-            <div class="overflow-x-auto">
+            <div className="overflow-x-auto">
             {tradeInCartItems.length === 0 ? (
                 <div>
                 <p className="font-mainfont text-xl text-dark mx-2">
@@ -202,7 +202,7 @@ browse for trades.
                 </Link></p></div>
               ) : (
 
-              <table class="table w-full">
+              <table className="table w-full">
                 <thead>
                   <tr>
                     <th className="border text-lg bg-accent text-dark font-mainfont text-bold">Trades</th>
@@ -217,8 +217,8 @@ browse for trades.
             {tradeInCartItems.map((product) => (
                <tr key={product.product_id}>
                <td className="bg-white border font-mainfont">
-                 <div class="avatar">
-                   <div class="mb-8 rounded-btn w-24 h-24">
+                 <div className="avatar">
+                   <div className="mb-8 rounded-btn w-24 h-24">
                      <img
                        src={
                          product.product_id
@@ -281,7 +281,10 @@ browse for trades.
      <h2 className="mt-3 font-mainfont text-2xl font-bold text-dark">Total: ${finalTotal(cartItems, tradeInCartItems)}</h2>
      
 
-     <Link href="/cart/payment"> <button className="mt-6 btn btn-secondary font mainfont text-md mb-2">Proceed To Payment</button></Link>
+     <Link href="/cart/payment"> <button className="mt-6 btn bg-secondary border-none text-light 
+    hover:bg-pink-500 drop-shadow-lg
+    transition duration-500 ease-in-out transform font-mainfont  hover:scale-105
+     font mainfont font-bold text-lg hover:animate-pulse mb-2">Proceed To Payment</button></Link>
    </div>
 
 
