@@ -53,7 +53,9 @@ export default function AddToCartBtn({ product, onQuantityChange }) {
 
   return (
     <div>
-      <button onClick={() => addToCart(product)} className="btn btn-primary">
+      <button onClick={() => addToCart(product)} className="btn btn-secondary hover:animate-pulse font-mainfont bg-secondary hover:bg-secondary-500
+      text-light font-bold border-none
+">
         Add to Cart
       </button>
       <QuantityDisplay quantity={quantity} />

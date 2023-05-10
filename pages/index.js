@@ -145,7 +145,8 @@ export function ProductPagination({ products }) {
                       ease-out">
                  
 
-      <div className="card w-auto  bg-light  shadow-xl 
+      <div className="card w-auto  bg-light  shadow-xl  
+
       
       hover:scale-105 transition duration-500 ease-in-out  hover:shadow-xl 
       ">
