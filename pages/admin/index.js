@@ -129,11 +129,11 @@ function TablePagination({ products }) {
                     </tr>
                 ))}
             </tbody>
-            <tfoot>
+            <tfoot className="border">
                 <tr  className="border">
-                    <td colSpan="" className="bg-white border">
+                    <td colSpan="" className="bg-white ">
                         <div className="flex
-                      gap-2 border
+                      gap-2
                         ">
                             <button
                                 onClick={() => paginate(currentPage - 1)}
