@@ -151,9 +151,9 @@ continue shopping.
                           </div>
                         </div>
                       </td>
-                      <td className="bg-white border font-mainfont">{product.product_name}</td>
-                      <td className="bg-white border font-mainfont">${product.product_price}</td>
-                      <td className="bg-white border font-mainfont">
+                      <td className="bg-white border text-dark font-mainfont">{product.product_name}</td>
+                      <td className="bg-white border text-dark font-mainfont">${product.product_price}</td>
+                      <td className="bg-white border text-dark font-mainfont">
                         <input
                         className="w-12 h-10 bg-light text-dark rounded-box 
                         text-center
@@ -169,7 +169,7 @@ continue shopping.
                           }
                         />
                       </td>
-                      <td className="bg-white border  font-mainfont"> ${product.product_price * product.quantity}</td>
+                      <td className="bg-white border text-dark  font-mainfont"> ${product.product_price * product.quantity}</td>
                     <td className="bg-white border  font-mainfont ">  <button
                     className="btn btn-circle btn-sm btn-error material-icons text-light 
                     
@@ -216,7 +216,7 @@ browse for trades.
                 <tbody>
             {tradeInCartItems.map((product) => (
                <tr key={product.product_id} className="border">
-               <td className="border font-mainfont">
+               <td className="bg-white border font-mainfont">
                  <div className="avatar">
                    <div className="mb-8 rounded-btn w-24 h-24">
                      <img
@@ -235,9 +235,9 @@ browse for trades.
                    </div>
                  </div>
                </td>
-               <td className="bg-white border font-mainfont">{product.product_name}</td>
-               <td className="bg-white border font-mainfont">${product.product_tradeval}</td>
-               <td className="bg-white border font-mainfont">
+               <td className="bg-white border font-mainfont text-dark">{product.product_name}</td>
+               <td className="bg-white border text-dark font-mainfont">${product.product_tradeval}</td>
+               <td className="bg-white border text-dark font-mainfont">
 
                 <input
                 className="w-12 h-10 bg-light text-dark rounded-box
@@ -256,7 +256,7 @@ browse for trades.
                 
                </td>
                 
-               <td className="bg-white border font-mainfont">${product.product_tradeval * product.trade_quantity}</td>
+               <td className="bg-white border text-dark font-mainfont">${product.product_tradeval * product.trade_quantity}</td>
                <td className="bg-white border font-mainfont">
                <button
                                        className="btn btn-circle btn-sm btn-error material-icons text-light "
