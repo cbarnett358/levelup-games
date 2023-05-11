@@ -214,9 +214,9 @@ browse for trades.
                   </tr>
                 </thead>
                 <tbody>
-            {tradeInCartItems.map((product) => (
-               <tr key={product.product_id}>
-               <td className="bg-white border font-mainfont">
+                {tradeInCartItems.map((product) => (
+  <tr key={product.product_id} className="border">
+    <td className="bg-white border font-mainfont">
                  <div className="avatar">
                    <div className="mb-8 rounded-btn w-24 h-24">
                      <img
