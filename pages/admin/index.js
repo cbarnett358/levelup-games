@@ -55,12 +55,12 @@ function TablePagination({ products }) {
 
   return (
     <div className="overflow-x-auto bg-light">
-      <table className="table w-full bg-light border ">
-        <thead className=" text-light border  ">
-          <tr className="border">
+      <table className="table w-full bg-light  ">
+        <thead className=" text-light   ">
+          <tr className="">
             <th
               scope="col"
-              className=" font-mainfont border text-lg bg-primary "
+              className=" font-mainfont  text-lg bg-primary "
               onClick={() => handleSortClick("product_id")}
             >
               Product ID {sortColumn === "product_id" && sortDirection === 1 && <>&#x25BC;</>}
@@ -68,7 +68,7 @@ function TablePagination({ products }) {
             </th>
             <th
               scope="col"
-              className="font-mainfont border border-light text-lg bg-primary"
+              className="font-mainfont   text-lg bg-primary"
               onClick={() => handleSortClick("product_name")}
             >
               Product Name {sortColumn === "product_name" && sortDirection === 1 && <>&#x25BC;</>}
@@ -76,19 +76,19 @@ function TablePagination({ products }) {
             </th>
             <th
               scope="col"
-              className="font-mainfont border text-lg bg-primary"
+              className="font-mainfont  text-lg bg-primary"
               onClick={() => handleSortClick("product_price")}
             >
               Product Price {sortColumn === "product_price" && sortDirection === 1 && <>&#x25BC;</>}
               {sortColumn === "product_price" && sortDirection === -1 && <>&#x25B2;</>}
             </th>
-                            <th scope="col" className="font-mainfont border text-lg bg-primary"
+                            <th scope="col" className="font-mainfont  text-lg bg-primary"
                             onClick={() => handleSortClick("product_tradeval")}
                             >Product Trade Value
                             {sortColumn === "product_tradeval" && sortDirection === 1 && <>&#x25BC;</>}
                             </th>
 
-                            <th scope="col" className="font-mainfont border text-lg bg-primary"
+                            <th scope="col" className="font-mainfont  text-lg bg-primary"
                             onClick={() => handleSortClick("product_platform")}
                             >Product Platform
                             {sortColumn === "product_platform" && sortDirection === 1 && <>&#x25BC;</>}
@@ -96,13 +96,13 @@ function TablePagination({ products }) {
                             
                           
 
-                            <th scope="col" className="font-mainfont border text-lg bg-primary"
+                            <th scope="col" className="font-mainfont  text-lg bg-primary"
                             onClick={() => handleSortClick("product_rating")}
                             >Product Rating
                             {sortColumn === "product_rating" && sortDirection === 1 && <>&#x25BC;</>}
                             </th>
 
-                            <th scope="col" className="font-mainfont border text-lg bg-primary"
+                            <th scope="col" className="font-mainfont  text-lg bg-primary"
                             onClick={() => handleSortClick("product_description")}
                             >Product Description
                             {sortColumn === "product_description" && sortDirection === 1 && <>&#x25BC;</>}
@@ -114,23 +114,23 @@ function TablePagination({ products }) {
             </thead>
             <tbody className="bg-light">
                 {currentProducts.map((product) => (
-                    <tr key={product.product_id} className="border">
-                           <td className="bg-white font-mainfont border text-dark text-lg">
+                    <tr key={product.product_id} className="">
+                           <td className="bg-white font-mainfont  text-dark text-lg">
                            
                             {product.product_id}</td>
-                                    <td className="bg-white  font-mainfont border text-dark  text-lg">{product.product_name}</td>
-                                    <td className="bg-white  font-mainfont border text-dark  text-lg">${product.product_price}</td>
-                                    <td className="bg-white t font-mainfont border text-dark  text-lg">${product.product_tradeval}</td>
-                                    <td className="bg-white  font-mainfont border text-dark  text-lg">{product.product_platform}</td>
-                                    <td className="bg-white  text-base border  text-accent ">
+                                    <td className="bg-white  font-mainfont  text-dark  text-lg">{product.product_name}</td>
+                                    <td className="bg-white  font-mainfont  text-dark  text-lg">${product.product_price}</td>
+                                    <td className="bg-white t font-mainfont  text-dark  text-lg">${product.product_tradeval}</td>
+                                    <td className="bg-white  font-mainfont  text-dark  text-lg">{product.product_platform}</td>
+                                    <td className="bg-white  text-base   text-accent ">
       <ProductRating rating={product.product_rating} />
       </td>
-      <td className="bg-white border font-mainfont text-lg text-dark ">{product.product_description}</td>
+      <td className="bg-white  font-mainfont text-lg text-dark ">{product.product_description}</td>
                     </tr>
                 ))}
             </tbody>
             <tfoot>
-                <tr  className="border">
+                <tr  className="">
                     <td colSpan="" className="bg-white">
                         <div className="flex
                       gap-2
