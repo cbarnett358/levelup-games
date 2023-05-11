@@ -114,7 +114,7 @@ function TablePagination({ products }) {
             </thead>
             <tbody className="bg-light">
                 {currentProducts.map((product) => (
-                    <tr key={product.product_id}>
+                    <tr key={product.product_id} className="border">
                            <td className="bg-white font-mainfont border text-dark text-lg">
                            
                             {product.product_id}</td>
@@ -130,7 +130,7 @@ function TablePagination({ products }) {
                 ))}
             </tbody>
             <tfoot>
-                <tr>
+                <tr  className="border">
                     <td colSpan="" className="bg-white">
                         <div className="flex
                       gap-2
