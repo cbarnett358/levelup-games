@@ -205,18 +205,18 @@ browse for trades.
               <table className="table w-full">
                 <thead>
                   <tr>
-                    <th className=" text-lg bg-accent text-dark font-mainfont text-bold">Trades</th>
-                    <th className=" text-lg bg-accent text-dark font-mainfont text-bold">Product Name</th>
-                    <th className=" text-lg bg-accent text-dark font-mainfont text-bold">Product Trade Price</th>
-                    <th className=" text-lg bg-accent text-dark font-mainfont text-bold">Product Quantity</th>
-                    <th className=" text-lg bg-accent text-dark font-mainfont text-bold">Product Subtotal</th>
-                    <th className=" text-lg bg-accent text-dark font-mainfont text-bold">Remove</th>
+                    <th className="border text-lg bg-accent text-dark font-mainfont text-bold">Trades</th>
+                    <th className="border text-lg bg-accent text-dark font-mainfont text-bold">Product Name</th>
+                    <th className="border text-lg bg-accent text-dark font-mainfont text-bold">Product Trade Price</th>
+                    <th className="border text-lg bg-accent text-dark font-mainfont text-bold">Product Quantity</th>
+                    <th className="border text-lg bg-accent text-dark font-mainfont text-bold">Product Subtotal</th>
+                    <th className="border text-lg bg-accent text-dark font-mainfont text-bold">Remove</th>
                   </tr>
                 </thead>
                 <tbody>
             {tradeInCartItems.map((product) => (
                <tr key={product.product_id}>
-               <td className="bg-white  font-mainfont">
+               <td className="bg-white border font-mainfont">
                  <div className="avatar">
                    <div className="mb-8 rounded-btn w-24 h-24">
                      <img
