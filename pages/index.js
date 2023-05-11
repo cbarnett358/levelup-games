@@ -309,13 +309,22 @@ export default function Home() {
 }
 
 
+useEffect(() => {
+  async function fetchProducts() {
+    const postData = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}../../api/products`, postData);
+    const response = await res.json();
+    console.log(response.products);
+    setProducts(response.products);
+  }
 
-
-  useEffect(() => {
-    getProducts();
-  }, []);
-
-
+  fetchProducts();
+}, []);
   
 
 
