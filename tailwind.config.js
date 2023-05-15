@@ -5,7 +5,19 @@ module.exports = {
   theme: {
 
     daisyui: {
-      base: false,
+     themes: [
+        {
+          gamestore: {
+           "primary": "#6C30BF",
+           "secondary": "#F227AB",
+            "accent": "#F2D027",
+            "base-100": "#000000",
+            "light": "#e9e9f8",
+            "dark": "#11001C",
+          },
+       
+        },
+      ],
     },
 
     fontSize: {
