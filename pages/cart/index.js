@@ -83,7 +83,7 @@ export default function Cart() {
     
   return (
     
-    <main className="bg-white">
+    <main className="bg-white min-h-screen">
         <div className="text-sm breadcrumbs bg-primary container  drop-shadow-xl">
   <ul className=" xl:container  mx-auto px-8 sm:px-8 md-px-0 text-light font-mainfont ">
   <li>

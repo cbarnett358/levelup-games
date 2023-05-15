@@ -38,7 +38,7 @@ export default function Payment() {
   };
 
     return (
-        <main className="bg-white ">
+        <main className="bg-white min-h-screen">
         
           <div className="text-sm breadcrumbs bg-primary container ">
             <ul className="drop-shadow-xl xl:container mx-auto px-8 sm:px-8 md-px-0 text-light font-mainfont ">
