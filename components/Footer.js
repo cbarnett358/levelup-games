@@ -14,7 +14,7 @@ export function Footer () {
       <footer className="footer items-center p-4 text-light xl:container  
         mx-auto py-10">
   <div className="items-center ">
-  <img src="/levelUP_Logo.png " alt="levelUP Games" width={200} height={200} className="" /> 
+  <img src="/levelUP_3d.png" alt="levelUP Games" width={200} height={200} className="" /> 
 
 
 <Link href="/admin" className=''>

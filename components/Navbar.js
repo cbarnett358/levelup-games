@@ -11,7 +11,7 @@ export function NavBar({ quantity, tradeQuantity }) {
       <div className="navbar py-4 xl:container mx-auto">
         <div className="flex-1">
           <Link href="/" className="btn btn-ghost">
-            <img src="/levelUP_Logo.png" alt="levelUP Games" 
+            <img src="/levelUP_3d.png" alt="levelUP Games" 
             className="
             logo 
             w-32
