@@ -124,6 +124,7 @@ export default function ProductPage() {
   <img
   src={product.product_id ? `https://res.cloudinary.com/dabmn9eje/image/upload/v1683582484/${product.product_id}.png` : "https://placehold.co/600x400"}
   alt="Game Cover"
+  className='card shadow-2xl'
   onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/600x600/6C30BF/FFFF/?text=Product Cover"; }}
 />
     <div>
